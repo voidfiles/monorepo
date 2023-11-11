@@ -1,0 +1,19 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: PROMETHEUS
+    orgId: 1
+
+datasources:
+  - name: PROMETHEUS
+    type: prometheus
+    access: proxy
+    url: http://prometheus.{{domain_name}}
+    jsonData:
+      httpMethod: POST
+      manageAlerts: true
+      prometheusType: Prometheus
+      prometheusVersion: 2.47.1
+      cacheLevel: 'High'
+      disableRecordingRules: false
+      incrementalQueryOverlapWindow: 10m

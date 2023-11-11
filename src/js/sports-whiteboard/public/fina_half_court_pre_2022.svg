@@ -1,0 +1,16 @@
+<svg width="1700" height="1353" viewBox="0 0 1700 1353" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1700" height="1353" fill="#F5F5F5"/>
+<rect width="1700" height="2700" fill="white" fill-opacity="0.01"/>
+<rect x="100" y="100" width="1500" height="2500" fill="#E7EFFF"/>
+<rect x="100" y="300" width="1500" height="400" fill="#FFF9DA"/>
+<rect x="100" y="100" width="1500" height="200" fill="#FFE4E4"/>
+<rect x="700" y="50" width="300" height="50" fill="#D9D9D9"/>
+<line x1="102.5" y1="599.5" x2="1597.5" y2="599.5" stroke="#FFBDBD" stroke-width="5" stroke-linecap="round" stroke-dasharray="10 10"/>
+<line x1="1602.5" y1="700" x2="1602.5" y2="2000" stroke="#007C32" stroke-width="5"/>
+<line x1="97.5" y1="700" x2="97.5" y2="2000" stroke="#007C32" stroke-width="5"/>
+<line x1="97.5" y1="700" x2="97.5" y2="100" stroke="black" stroke-width="5"/>
+<line x1="95" y1="97.5" x2="1600" y2="97.5" stroke="black" stroke-width="5"/>
+<line x1="1602.5" y1="700" x2="1602.5" y2="95" stroke="black" stroke-width="5"/>
+<line x1="100" y1="1350.5" x2="1600" y2="1350.5" stroke="white" stroke-width="5"/>
+<line x1="97.5" y1="299.5" x2="1597.5" y2="299.5" stroke="black" stroke-opacity="0.5" stroke-width="5" stroke-linecap="round" stroke-dasharray="10 10"/>
+</svg>

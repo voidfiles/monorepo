@@ -1,0 +1,1985 @@
+{
+    "name": "6 on 6",
+    "frames": [
+        {
+            "id": "766a5d82-2297-4fbe-95a3-7547a8ab5701",
+            "objects": [
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 1065.65,
+                    "top": 205.72,
+                    "width": 55,
+                    "height": 55,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "dffc27a6-728b-4c0e-98d4-e2e5139e8b1a",
+                        "objectName": "defense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "C",
+                            5.192,
+                            16.22,
+                            2.527,
+                            13.565,
+                            5.167,
+                            10.924
+                        ],
+                        [
+                            "C",
+                            7.807,
+                            8.283,
+                            10.43,
+                            5.659,
+                            10.43,
+                            5.659
+                        ],
+                        [
+                            "C",
+                            10.43,
+                            5.659,
+                            13.09,
+                            3.055,
+                            15.704,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            18.318,
+                            8.285,
+                            31.494,
+                            21.464,
+                            31.494,
+                            21.464
+                        ],
+                        [
+                            "L",
+                            47.285,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            47.285,
+                            5.67,
+                            49.915,
+                            3.036,
+                            52.551,
+                            5.673
+                        ],
+                        [
+                            "C",
+                            55.188,
+                            8.31,
+                            57.822,
+                            10.945,
+                            57.822,
+                            10.945
+                        ],
+                        [
+                            "C",
+                            57.822,
+                            10.945,
+                            60.473,
+                            13.558,
+                            57.822,
+                            16.209
+                        ],
+                        [
+                            "C",
+                            57.095,
+                            16.936,
+                            42.021,
+                            32.014,
+                            42.021,
+                            32.014
+                        ],
+                        [
+                            "L",
+                            57.811,
+                            47.809
+                        ],
+                        [
+                            "C",
+                            57.811,
+                            47.809,
+                            60.459,
+                            50.425,
+                            57.811,
+                            53.073
+                        ],
+                        [
+                            "C",
+                            55.164,
+                            55.721,
+                            52.558,
+                            58.328,
+                            52.558,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            52.558,
+                            58.328,
+                            49.93,
+                            60.964,
+                            47.295,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            44.659,
+                            55.691,
+                            31.505,
+                            42.533,
+                            31.505,
+                            42.533
+                        ],
+                        [
+                            "L",
+                            15.714,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            15.714,
+                            58.328,
+                            13.074,
+                            60.972,
+                            10.42,
+                            58.318
+                        ],
+                        [
+                            "C",
+                            7.766,
+                            55.663,
+                            5.157,
+                            53.053,
+                            5.157,
+                            53.053
+                        ],
+                        [
+                            "C",
+                            5.157,
+                            53.053,
+                            2.569,
+                            50.415,
+                            5.189,
+                            47.794
+                        ],
+                        [
+                            "C",
+                            7.809,
+                            45.173,
+                            20.966,
+                            32.013,
+                            20.966,
+                            32.013
+                        ],
+                        [
+                            "L",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 481.66,
+                    "top": 404.81,
+                    "width": 56,
+                    "height": 56,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "9652f38a-d64c-4868-b9e8-69cd1b66fc3a",
+                        "objectName": "offense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            60,
+                            32
+                        ],
+                        [
+                            "C",
+                            60,
+                            16.536,
+                            47.464,
+                            4,
+                            32,
+                            4
+                        ],
+                        [
+                            "C",
+                            16.536,
+                            4,
+                            4,
+                            16.536,
+                            4,
+                            32
+                        ],
+                        [
+                            "C",
+                            4,
+                            47.464,
+                            16.536,
+                            60,
+                            32,
+                            60
+                        ],
+                        [
+                            "C",
+                            47.464,
+                            60,
+                            60,
+                            47.464,
+                            60,
+                            32
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 626.02,
+                    "top": 722.04,
+                    "width": 56,
+                    "height": 56,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "eb5fbda1-b1d9-468a-95b9-434b32de9ff9",
+                        "objectName": "offense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            60,
+                            32
+                        ],
+                        [
+                            "C",
+                            60,
+                            16.536,
+                            47.464,
+                            4,
+                            32,
+                            4
+                        ],
+                        [
+                            "C",
+                            16.536,
+                            4,
+                            4,
+                            16.536,
+                            4,
+                            32
+                        ],
+                        [
+                            "C",
+                            4,
+                            47.464,
+                            16.536,
+                            60,
+                            32,
+                            60
+                        ],
+                        [
+                            "C",
+                            47.464,
+                            60,
+                            60,
+                            47.464,
+                            60,
+                            32
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 1021.91,
+                    "top": 820.49,
+                    "width": 56,
+                    "height": 56,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "947fb906-9e91-45ec-b4dc-eeff37cb5ea6",
+                        "objectName": "offense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            60,
+                            32
+                        ],
+                        [
+                            "C",
+                            60,
+                            16.536,
+                            47.464,
+                            4,
+                            32,
+                            4
+                        ],
+                        [
+                            "C",
+                            16.536,
+                            4,
+                            4,
+                            16.536,
+                            4,
+                            32
+                        ],
+                        [
+                            "C",
+                            4,
+                            47.464,
+                            16.536,
+                            60,
+                            32,
+                            60
+                        ],
+                        [
+                            "C",
+                            47.464,
+                            60,
+                            60,
+                            47.464,
+                            60,
+                            32
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 1472.48,
+                    "top": 715.48,
+                    "width": 56,
+                    "height": 56,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "13fb000c-6484-44b2-8b43-89f51469afdd",
+                        "objectName": "offense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            60,
+                            32
+                        ],
+                        [
+                            "C",
+                            60,
+                            16.536,
+                            47.464,
+                            4,
+                            32,
+                            4
+                        ],
+                        [
+                            "C",
+                            16.536,
+                            4,
+                            4,
+                            16.536,
+                            4,
+                            32
+                        ],
+                        [
+                            "C",
+                            4,
+                            47.464,
+                            16.536,
+                            60,
+                            32,
+                            60
+                        ],
+                        [
+                            "C",
+                            47.464,
+                            60,
+                            60,
+                            47.464,
+                            60,
+                            32
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 1603.71,
+                    "top": 409.19,
+                    "width": 56,
+                    "height": 56,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "a91c958a-24ce-425d-9a15-70e8ee6f545f",
+                        "objectName": "offense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            60,
+                            32
+                        ],
+                        [
+                            "C",
+                            60,
+                            16.536,
+                            47.464,
+                            4,
+                            32,
+                            4
+                        ],
+                        [
+                            "C",
+                            16.536,
+                            4,
+                            4,
+                            16.536,
+                            4,
+                            32
+                        ],
+                        [
+                            "C",
+                            4,
+                            47.464,
+                            16.536,
+                            60,
+                            32,
+                            60
+                        ],
+                        [
+                            "C",
+                            47.464,
+                            60,
+                            60,
+                            47.464,
+                            60,
+                            32
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 1063.46,
+                    "top": 463.88,
+                    "width": 56,
+                    "height": 56,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "57057b9d-3014-4551-85ae-aeab6538513c",
+                        "objectName": "offense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            60,
+                            32
+                        ],
+                        [
+                            "C",
+                            60,
+                            16.536,
+                            47.464,
+                            4,
+                            32,
+                            4
+                        ],
+                        [
+                            "C",
+                            16.536,
+                            4,
+                            4,
+                            16.536,
+                            4,
+                            32
+                        ],
+                        [
+                            "C",
+                            4,
+                            47.464,
+                            16.536,
+                            60,
+                            32,
+                            60
+                        ],
+                        [
+                            "C",
+                            47.464,
+                            60,
+                            60,
+                            47.464,
+                            60,
+                            32
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 1063.46,
+                    "top": 380.75,
+                    "width": 55,
+                    "height": 55,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "ac7a111f-8517-4b4c-aabc-dd9853656ce5",
+                        "objectName": "defense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "C",
+                            5.192,
+                            16.22,
+                            2.527,
+                            13.565,
+                            5.167,
+                            10.924
+                        ],
+                        [
+                            "C",
+                            7.807,
+                            8.283,
+                            10.43,
+                            5.659,
+                            10.43,
+                            5.659
+                        ],
+                        [
+                            "C",
+                            10.43,
+                            5.659,
+                            13.09,
+                            3.055,
+                            15.704,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            18.318,
+                            8.285,
+                            31.494,
+                            21.464,
+                            31.494,
+                            21.464
+                        ],
+                        [
+                            "L",
+                            47.285,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            47.285,
+                            5.67,
+                            49.915,
+                            3.036,
+                            52.551,
+                            5.673
+                        ],
+                        [
+                            "C",
+                            55.188,
+                            8.31,
+                            57.822,
+                            10.945,
+                            57.822,
+                            10.945
+                        ],
+                        [
+                            "C",
+                            57.822,
+                            10.945,
+                            60.473,
+                            13.558,
+                            57.822,
+                            16.209
+                        ],
+                        [
+                            "C",
+                            57.095,
+                            16.936,
+                            42.021,
+                            32.014,
+                            42.021,
+                            32.014
+                        ],
+                        [
+                            "L",
+                            57.811,
+                            47.809
+                        ],
+                        [
+                            "C",
+                            57.811,
+                            47.809,
+                            60.459,
+                            50.425,
+                            57.811,
+                            53.073
+                        ],
+                        [
+                            "C",
+                            55.164,
+                            55.721,
+                            52.558,
+                            58.328,
+                            52.558,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            52.558,
+                            58.328,
+                            49.93,
+                            60.964,
+                            47.295,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            44.659,
+                            55.691,
+                            31.505,
+                            42.533,
+                            31.505,
+                            42.533
+                        ],
+                        [
+                            "L",
+                            15.714,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            15.714,
+                            58.328,
+                            13.074,
+                            60.972,
+                            10.42,
+                            58.318
+                        ],
+                        [
+                            "C",
+                            7.766,
+                            55.663,
+                            5.157,
+                            53.053,
+                            5.157,
+                            53.053
+                        ],
+                        [
+                            "C",
+                            5.157,
+                            53.053,
+                            2.569,
+                            50.415,
+                            5.189,
+                            47.794
+                        ],
+                        [
+                            "C",
+                            7.809,
+                            45.173,
+                            20.966,
+                            32.013,
+                            20.966,
+                            32.013
+                        ],
+                        [
+                            "L",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 556.02,
+                    "top": 385.12,
+                    "width": 55,
+                    "height": 55,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "7eb925da-13a6-4a18-8173-cb8540944856",
+                        "objectName": "defense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "C",
+                            5.192,
+                            16.22,
+                            2.527,
+                            13.565,
+                            5.167,
+                            10.924
+                        ],
+                        [
+                            "C",
+                            7.807,
+                            8.283,
+                            10.43,
+                            5.659,
+                            10.43,
+                            5.659
+                        ],
+                        [
+                            "C",
+                            10.43,
+                            5.659,
+                            13.09,
+                            3.055,
+                            15.704,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            18.318,
+                            8.285,
+                            31.494,
+                            21.464,
+                            31.494,
+                            21.464
+                        ],
+                        [
+                            "L",
+                            47.285,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            47.285,
+                            5.67,
+                            49.915,
+                            3.036,
+                            52.551,
+                            5.673
+                        ],
+                        [
+                            "C",
+                            55.188,
+                            8.31,
+                            57.822,
+                            10.945,
+                            57.822,
+                            10.945
+                        ],
+                        [
+                            "C",
+                            57.822,
+                            10.945,
+                            60.473,
+                            13.558,
+                            57.822,
+                            16.209
+                        ],
+                        [
+                            "C",
+                            57.095,
+                            16.936,
+                            42.021,
+                            32.014,
+                            42.021,
+                            32.014
+                        ],
+                        [
+                            "L",
+                            57.811,
+                            47.809
+                        ],
+                        [
+                            "C",
+                            57.811,
+                            47.809,
+                            60.459,
+                            50.425,
+                            57.811,
+                            53.073
+                        ],
+                        [
+                            "C",
+                            55.164,
+                            55.721,
+                            52.558,
+                            58.328,
+                            52.558,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            52.558,
+                            58.328,
+                            49.93,
+                            60.964,
+                            47.295,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            44.659,
+                            55.691,
+                            31.505,
+                            42.533,
+                            31.505,
+                            42.533
+                        ],
+                        [
+                            "L",
+                            15.714,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            15.714,
+                            58.328,
+                            13.074,
+                            60.972,
+                            10.42,
+                            58.318
+                        ],
+                        [
+                            "C",
+                            7.766,
+                            55.663,
+                            5.157,
+                            53.053,
+                            5.157,
+                            53.053
+                        ],
+                        [
+                            "C",
+                            5.157,
+                            53.053,
+                            2.569,
+                            50.415,
+                            5.189,
+                            47.794
+                        ],
+                        [
+                            "C",
+                            7.809,
+                            45.173,
+                            20.966,
+                            32.013,
+                            20.966,
+                            32.013
+                        ],
+                        [
+                            "L",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 696.01,
+                    "top": 676.1,
+                    "width": 55,
+                    "height": 55,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "025cb984-5e89-429e-97b8-b3fd2201f785",
+                        "objectName": "defense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "C",
+                            5.192,
+                            16.22,
+                            2.527,
+                            13.565,
+                            5.167,
+                            10.924
+                        ],
+                        [
+                            "C",
+                            7.807,
+                            8.283,
+                            10.43,
+                            5.659,
+                            10.43,
+                            5.659
+                        ],
+                        [
+                            "C",
+                            10.43,
+                            5.659,
+                            13.09,
+                            3.055,
+                            15.704,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            18.318,
+                            8.285,
+                            31.494,
+                            21.464,
+                            31.494,
+                            21.464
+                        ],
+                        [
+                            "L",
+                            47.285,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            47.285,
+                            5.67,
+                            49.915,
+                            3.036,
+                            52.551,
+                            5.673
+                        ],
+                        [
+                            "C",
+                            55.188,
+                            8.31,
+                            57.822,
+                            10.945,
+                            57.822,
+                            10.945
+                        ],
+                        [
+                            "C",
+                            57.822,
+                            10.945,
+                            60.473,
+                            13.558,
+                            57.822,
+                            16.209
+                        ],
+                        [
+                            "C",
+                            57.095,
+                            16.936,
+                            42.021,
+                            32.014,
+                            42.021,
+                            32.014
+                        ],
+                        [
+                            "L",
+                            57.811,
+                            47.809
+                        ],
+                        [
+                            "C",
+                            57.811,
+                            47.809,
+                            60.459,
+                            50.425,
+                            57.811,
+                            53.073
+                        ],
+                        [
+                            "C",
+                            55.164,
+                            55.721,
+                            52.558,
+                            58.328,
+                            52.558,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            52.558,
+                            58.328,
+                            49.93,
+                            60.964,
+                            47.295,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            44.659,
+                            55.691,
+                            31.505,
+                            42.533,
+                            31.505,
+                            42.533
+                        ],
+                        [
+                            "L",
+                            15.714,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            15.714,
+                            58.328,
+                            13.074,
+                            60.972,
+                            10.42,
+                            58.318
+                        ],
+                        [
+                            "C",
+                            7.766,
+                            55.663,
+                            5.157,
+                            53.053,
+                            5.157,
+                            53.053
+                        ],
+                        [
+                            "C",
+                            5.157,
+                            53.053,
+                            2.569,
+                            50.415,
+                            5.189,
+                            47.794
+                        ],
+                        [
+                            "C",
+                            7.809,
+                            45.173,
+                            20.966,
+                            32.013,
+                            20.966,
+                            32.013
+                        ],
+                        [
+                            "L",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 1017.53,
+                    "top": 726.42,
+                    "width": 55,
+                    "height": 55,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "0781f546-a47b-45b5-ab5a-2d415b303cb6",
+                        "objectName": "defense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "C",
+                            5.192,
+                            16.22,
+                            2.527,
+                            13.565,
+                            5.167,
+                            10.924
+                        ],
+                        [
+                            "C",
+                            7.807,
+                            8.283,
+                            10.43,
+                            5.659,
+                            10.43,
+                            5.659
+                        ],
+                        [
+                            "C",
+                            10.43,
+                            5.659,
+                            13.09,
+                            3.055,
+                            15.704,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            18.318,
+                            8.285,
+                            31.494,
+                            21.464,
+                            31.494,
+                            21.464
+                        ],
+                        [
+                            "L",
+                            47.285,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            47.285,
+                            5.67,
+                            49.915,
+                            3.036,
+                            52.551,
+                            5.673
+                        ],
+                        [
+                            "C",
+                            55.188,
+                            8.31,
+                            57.822,
+                            10.945,
+                            57.822,
+                            10.945
+                        ],
+                        [
+                            "C",
+                            57.822,
+                            10.945,
+                            60.473,
+                            13.558,
+                            57.822,
+                            16.209
+                        ],
+                        [
+                            "C",
+                            57.095,
+                            16.936,
+                            42.021,
+                            32.014,
+                            42.021,
+                            32.014
+                        ],
+                        [
+                            "L",
+                            57.811,
+                            47.809
+                        ],
+                        [
+                            "C",
+                            57.811,
+                            47.809,
+                            60.459,
+                            50.425,
+                            57.811,
+                            53.073
+                        ],
+                        [
+                            "C",
+                            55.164,
+                            55.721,
+                            52.558,
+                            58.328,
+                            52.558,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            52.558,
+                            58.328,
+                            49.93,
+                            60.964,
+                            47.295,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            44.659,
+                            55.691,
+                            31.505,
+                            42.533,
+                            31.505,
+                            42.533
+                        ],
+                        [
+                            "L",
+                            15.714,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            15.714,
+                            58.328,
+                            13.074,
+                            60.972,
+                            10.42,
+                            58.318
+                        ],
+                        [
+                            "C",
+                            7.766,
+                            55.663,
+                            5.157,
+                            53.053,
+                            5.157,
+                            53.053
+                        ],
+                        [
+                            "C",
+                            5.157,
+                            53.053,
+                            2.569,
+                            50.415,
+                            5.189,
+                            47.794
+                        ],
+                        [
+                            "C",
+                            7.809,
+                            45.173,
+                            20.966,
+                            32.013,
+                            20.966,
+                            32.013
+                        ],
+                        [
+                            "L",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 1424.36,
+                    "top": 656.41,
+                    "width": 55,
+                    "height": 55,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "04be4ff8-b38a-42c2-b05b-52d3e22fbc12",
+                        "objectName": "defense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "C",
+                            5.192,
+                            16.22,
+                            2.527,
+                            13.565,
+                            5.167,
+                            10.924
+                        ],
+                        [
+                            "C",
+                            7.807,
+                            8.283,
+                            10.43,
+                            5.659,
+                            10.43,
+                            5.659
+                        ],
+                        [
+                            "C",
+                            10.43,
+                            5.659,
+                            13.09,
+                            3.055,
+                            15.704,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            18.318,
+                            8.285,
+                            31.494,
+                            21.464,
+                            31.494,
+                            21.464
+                        ],
+                        [
+                            "L",
+                            47.285,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            47.285,
+                            5.67,
+                            49.915,
+                            3.036,
+                            52.551,
+                            5.673
+                        ],
+                        [
+                            "C",
+                            55.188,
+                            8.31,
+                            57.822,
+                            10.945,
+                            57.822,
+                            10.945
+                        ],
+                        [
+                            "C",
+                            57.822,
+                            10.945,
+                            60.473,
+                            13.558,
+                            57.822,
+                            16.209
+                        ],
+                        [
+                            "C",
+                            57.095,
+                            16.936,
+                            42.021,
+                            32.014,
+                            42.021,
+                            32.014
+                        ],
+                        [
+                            "L",
+                            57.811,
+                            47.809
+                        ],
+                        [
+                            "C",
+                            57.811,
+                            47.809,
+                            60.459,
+                            50.425,
+                            57.811,
+                            53.073
+                        ],
+                        [
+                            "C",
+                            55.164,
+                            55.721,
+                            52.558,
+                            58.328,
+                            52.558,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            52.558,
+                            58.328,
+                            49.93,
+                            60.964,
+                            47.295,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            44.659,
+                            55.691,
+                            31.505,
+                            42.533,
+                            31.505,
+                            42.533
+                        ],
+                        [
+                            "L",
+                            15.714,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            15.714,
+                            58.328,
+                            13.074,
+                            60.972,
+                            10.42,
+                            58.318
+                        ],
+                        [
+                            "C",
+                            7.766,
+                            55.663,
+                            5.157,
+                            53.053,
+                            5.157,
+                            53.053
+                        ],
+                        [
+                            "C",
+                            5.157,
+                            53.053,
+                            2.569,
+                            50.415,
+                            5.189,
+                            47.794
+                        ],
+                        [
+                            "C",
+                            7.809,
+                            45.173,
+                            20.966,
+                            32.013,
+                            20.966,
+                            32.013
+                        ],
+                        [
+                            "L",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                },
+                {
+                    "type": "path",
+                    "version": "5.2.1",
+                    "originX": "left",
+                    "originY": "top",
+                    "left": 1529.35,
+                    "top": 380.75,
+                    "width": 55,
+                    "height": 55,
+                    "fill": "#FFFFFF",
+                    "stroke": "rgba(0,0,0,1)",
+                    "strokeWidth": 6,
+                    "strokeDashArray": null,
+                    "strokeLineCap": "butt",
+                    "strokeDashOffset": 0,
+                    "strokeLineJoin": "round",
+                    "strokeUniform": false,
+                    "strokeMiterLimit": 4,
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "angle": 0,
+                    "flipX": false,
+                    "flipY": false,
+                    "opacity": 1,
+                    "shadow": null,
+                    "visible": true,
+                    "backgroundColor": "",
+                    "fillRule": "nonzero",
+                    "paintFirst": "fill",
+                    "globalCompositeOperation": "source-over",
+                    "skewX": 0,
+                    "skewY": 0,
+                    "data": {
+                        "id": "ce44146d-ef12-4dfb-8e38-7ecc5bff0a9b",
+                        "objectName": "defense"
+                    },
+                    "path": [
+                        [
+                            "M",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "C",
+                            5.192,
+                            16.22,
+                            2.527,
+                            13.565,
+                            5.167,
+                            10.924
+                        ],
+                        [
+                            "C",
+                            7.807,
+                            8.283,
+                            10.43,
+                            5.659,
+                            10.43,
+                            5.659
+                        ],
+                        [
+                            "C",
+                            10.43,
+                            5.659,
+                            13.09,
+                            3.055,
+                            15.704,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            18.318,
+                            8.285,
+                            31.494,
+                            21.464,
+                            31.494,
+                            21.464
+                        ],
+                        [
+                            "L",
+                            47.285,
+                            5.67
+                        ],
+                        [
+                            "C",
+                            47.285,
+                            5.67,
+                            49.915,
+                            3.036,
+                            52.551,
+                            5.673
+                        ],
+                        [
+                            "C",
+                            55.188,
+                            8.31,
+                            57.822,
+                            10.945,
+                            57.822,
+                            10.945
+                        ],
+                        [
+                            "C",
+                            57.822,
+                            10.945,
+                            60.473,
+                            13.558,
+                            57.822,
+                            16.209
+                        ],
+                        [
+                            "C",
+                            57.095,
+                            16.936,
+                            42.021,
+                            32.014,
+                            42.021,
+                            32.014
+                        ],
+                        [
+                            "L",
+                            57.811,
+                            47.809
+                        ],
+                        [
+                            "C",
+                            57.811,
+                            47.809,
+                            60.459,
+                            50.425,
+                            57.811,
+                            53.073
+                        ],
+                        [
+                            "C",
+                            55.164,
+                            55.721,
+                            52.558,
+                            58.328,
+                            52.558,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            52.558,
+                            58.328,
+                            49.93,
+                            60.964,
+                            47.295,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            44.659,
+                            55.691,
+                            31.505,
+                            42.533,
+                            31.505,
+                            42.533
+                        ],
+                        [
+                            "L",
+                            15.714,
+                            58.328
+                        ],
+                        [
+                            "C",
+                            15.714,
+                            58.328,
+                            13.074,
+                            60.972,
+                            10.42,
+                            58.318
+                        ],
+                        [
+                            "C",
+                            7.766,
+                            55.663,
+                            5.157,
+                            53.053,
+                            5.157,
+                            53.053
+                        ],
+                        [
+                            "C",
+                            5.157,
+                            53.053,
+                            2.569,
+                            50.415,
+                            5.189,
+                            47.794
+                        ],
+                        [
+                            "C",
+                            7.809,
+                            45.173,
+                            20.966,
+                            32.013,
+                            20.966,
+                            32.013
+                        ],
+                        [
+                            "L",
+                            5.192,
+                            16.22
+                        ],
+                        [
+                            "Z"
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}

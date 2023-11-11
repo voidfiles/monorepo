@@ -1,0 +1,7 @@
+#! /bin/bash
+prev=.
+while [[ $PWD != "$prev" ]] ; do
+    find "$PWD" -maxdepth 1 "$@"
+    prev=$PWD
+    cd ..
+done

@@ -1,0 +1,40 @@
+- hosts: beast
+  become: true
+  vars:
+    local_ansible_become_pass: "{{ lookup('onepassword', 'local_ansible_become_pass', errors='warn') | d(omit) }}"
+    aws_access_key: "{{ lookup('onepassword', 'AWS Access Key', field='access key id', errors='warn') | d(omit) }}"
+    aws_secret_access_key: "{{ lookup('onepassword', 'AWS Access Key', field='secret access key', errors='warn') | d(omit) }}"
+
+  tasks:
+    - name: Install tailscale
+      import_tasks: ../tasks/tailscale.yml
+      tags:
+      - tailscale
+    - name: Install dokku
+      import_tasks: ../tasks/dokku.yml
+      tags:
+      - dokku
+    - name: Install netdata
+      import_tasks: ../tasks/netdata.yml
+      tags:
+      - netdata
+    - name: Install grafana
+      import_tasks: ../tasks/grafana.yml
+      tags:
+      - grafana
+    - name: Install node-exporter
+      import_tasks: ../tasks/node_exporter.yml
+      tags:
+      - node-exporter
+    - name: Install statsd-exporter
+      import_tasks: ../tasks/statsd_exporter.yml
+      tags:
+      - statsd-exporter
+    - name: Install influxdb
+      import_tasks: ../tasks/influxdb.yml
+      tags:
+      - influxdb
+    - name: Install prometheus
+      import_tasks: ../tasks/prometheus.yml
+      tags:
+      - prometheus

@@ -1,0 +1,106 @@
+go run . crawl
+2023/09/09 16:10:11 INFO Starting a content crawl
+2023/09/09 16:10:11 INFO Start metrics expose
+2023/09/09 16:10:11 INFO Opening a queue
+2023/09/09 16:10:11 INFO Creating a crawl queue
+2023/09/09 16:10:11 INFO Starting a crawl queue
+2023/09/09 16:10:11 INFO Starting a crawl queue worker=0
+2023/09/09 16:10:11 INFO Starting a crawl queue worker=1
+2023/09/09 16:10:11 INFO Starting a crawl queue worker=2
+2023/09/09 16:10:11 INFO Starting a crawl queue worker=3
+2023/09/09 16:10:11 INFO Starting a crawl queue worker=4
+2023/09/09 16:10:11 INFO Starting a crawl queue worker=5
+2023/09/09 16:10:11 INFO Starting a crawl queue worker=6
+2023/09/09 16:10:11 INFO Starting a crawl queue worker=7
+2023/09/09 16:10:11 INFO Opening crawler
+2023/09/09 16:10:11 INFO Opening crawler
+2023/09/09 16:10:11 INFO Opening crawler
+2023/09/09 16:10:11 INFO Must new crawler
+2023/09/09 16:10:11 INFO Opening crawler
+2023/09/09 16:10:11 INFO Opening crawler
+2023/09/09 16:10:11 INFO Must new crawler
+2023/09/09 16:10:11 INFO Crawler opts
+2023/09/09 16:10:11 INFO returning the crawler
+2023/09/09 16:10:11 INFO Starting a crawl loop
+2023/09/09 16:10:11 INFO Crawler opts
+2023/09/09 16:10:11 INFO Must new crawler
+2023/09/09 16:10:11 INFO Crawler opts
+2023/09/09 16:10:11 INFO returning the crawler
+2023/09/09 16:10:11 INFO Starting a crawl loop
+2023/09/09 16:10:11 INFO Pulling from the queue
+2023/09/09 16:10:11 INFO Must new crawler
+2023/09/09 16:10:11 INFO Crawler opts
+2023/09/09 16:10:11 INFO returning the crawler
+2023/09/09 16:10:11 INFO returning the crawler
+2023/09/09 16:10:11 INFO Starting a crawl loop
+2023/09/09 16:10:11 INFO Pulling from the queue
+2023/09/09 16:10:11 INFO Opening crawler
+2023/09/09 16:10:11 INFO Opening crawler
+2023/09/09 16:10:11 INFO Opening crawler
+2023/09/09 16:10:11 INFO Must new crawler
+2023/09/09 16:10:11 INFO Must new crawler
+2023/09/09 16:10:11 INFO Crawler opts
+2023/09/09 16:10:11 INFO returning the crawler
+2023/09/09 16:10:11 INFO Starting a crawl loop
+2023/09/09 16:10:11 INFO Pulling from the queue
+2023/09/09 16:10:11 INFO Crawler opts
+2023/09/09 16:10:11 INFO returning the crawler
+2023/09/09 16:10:11 INFO Starting a crawl loop
+2023/09/09 16:10:11 INFO Pulling from the queue
+2023/09/09 16:10:11 INFO Pulling from the queue
+2023/09/09 16:10:11 INFO Starting a crawl loop
+2023/09/09 16:10:11 INFO Pulling from the queue
+2023/09/09 16:10:11 INFO Must new crawler
+2023/09/09 16:10:11 INFO Crawler opts
+2023/09/09 16:10:11 INFO returning the crawler
+2023/09/09 16:10:11 INFO Starting a crawl loop
+2023/09/09 16:10:11 INFO Pulling from the queue
+2023/09/09 16:10:11 INFO Must new crawler
+2023/09/09 16:10:11 INFO Crawler opts
+2023/09/09 16:10:11 INFO returning the crawler
+2023/09/09 16:10:11 INFO Starting a crawl loop
+2023/09/09 16:10:11 INFO Pulling from the queue
+2023/09/09 16:10:11 INFO Queueing some json json="{\"Priority\":0,\"Url\":\"https://pinboard.in/popular/\"}"
+This is the json
+[109/109]0x12ac8c6c5
+2023/09/09 16:10:11 INFO invalid json on queue json="metafilter.com/200582/Cops-are-not-your-friends-Prosecutors-are-not-your-friends\"}1:105{\"Priority\":1,\"Url\":\"h"
+2023/09/09 16:10:11 INFO content crawl url=""
+2023/09/09 16:10:11 INFO crawler: find or fetch raw_url=""
+2023/09/09 16:10:11 INFO building locator raw_url=""
+2023/09/09 16:10:11 ERROR err url="" fetching=rawerr !BADKEY="Get \"\": unsupported protocol scheme \"\""
+2023/09/09 16:10:11 ERROR failed to fetch url raw_url="" error="Get \"\": unsupported protocol scheme \"\""
+2023/09/09 16:10:11 ERROR crawler: find or fetch: failed to crawl doc raw_url="" error="crawler: failed to fetch url  Get \"\": unsupported protocol scheme \"\""
+2023/09/09 16:10:11 INFO Pulling from the queue
+This is the json
+[55/55]0x12ac986b5
+2023/09/09 16:10:11 INFO invalid json on queue json=".nytimes.com/2023/09/08/magazine/men-college-enrollment"
+2023/09/09 16:10:11 INFO content crawl url=""
+2023/09/09 16:10:11 INFO crawler: find or fetch raw_url=""
+2023/09/09 16:10:11 INFO building locator raw_url=""
+2023/09/09 16:10:11 ERROR err url="" fetching=rawerr !BADKEY="Get \"\": unsupported protocol scheme \"\""
+2023/09/09 16:10:11 ERROR failed to fetch url raw_url="" error="Get \"\": unsupported protocol scheme \"\""
+2023/09/09 16:10:11 ERROR crawler: find or fetch: failed to crawl doc raw_url="" error="crawler: failed to fetch url  Get \"\": unsupported protocol scheme \"\""
+2023/09/09 16:10:11 INFO Pulling from the queue
+This is the json
+[114/114]0x12ac8c6a5
+panic: JSON decoder out of sync - data changing underfoot?
+
+goroutine 51 [running]:
+encoding/json.(*decodeState).object(0x140026325a0, {0x10303a6a0?, 0x140005902d0?, 0x10275292c?})
+	/opt/homebrew/Cellar/go/1.21.0/libexec/src/encoding/json/decode.go:668 +0x1578
+encoding/json.(*decodeState).value(0x140026325a0, {0x10303a6a0?, 0x140005902d0?, 0x102751f14?})
+	/opt/homebrew/Cellar/go/1.21.0/libexec/src/encoding/json/decode.go:374 +0x40
+encoding/json.(*decodeState).unmarshal(0x140026325a0, {0x10303a6a0?, 0x140005902d0?})
+	/opt/homebrew/Cellar/go/1.21.0/libexec/src/encoding/json/decode.go:181 +0x120
+encoding/json.Unmarshal({0x12ac8c6a5, 0x72, 0x72}, {0x10303a6a0, 0x140005902d0})
+	/opt/homebrew/Cellar/go/1.21.0/libexec/src/encoding/json/decode.go:108 +0xf8
+main.getUrl(0x140000446e0?)
+	/Users/alex/Documents/codes/starscrape/main.go:53 +0x9c
+main.ContentCrawl({0x10313be08, 0x14002e16050}, 0x14002d111a0?)
+	/Users/alex/Documents/codes/starscrape/main.go:87 +0x390
+main.Crawl.func4()
+	/Users/alex/Documents/codes/starscrape/main.go:162 +0x28
+created by main.Crawl in goroutine 1
+	/Users/alex/Documents/codes/starscrape/main.go:161 +0x48c
+exit status 2
+make: *** [run] Error 1

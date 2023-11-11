@@ -1,0 +1,18 @@
+name: End-to-end tests
+on: [push, pull_request]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@HEAD
+        env:
+          SENTRYCLI_SKIP_DOWNLOAD: 1
+          SENTRY_DSN: https://2ad26b6b21e247b8b88bd274b0f61c7e@o1058762.ingest.sentry.io/6455884
+      - name: Build it
+        env:
+          SENTRYCLI_SKIP_DOWNLOAD: 1
+          SENTRY_DSN: https://2ad26b6b21e247b8b88bd274b0f61c7e@o1058762.ingest.sentry.io/6455884
+        run: |
+          yarn run build
+          yarn run e2e:headless

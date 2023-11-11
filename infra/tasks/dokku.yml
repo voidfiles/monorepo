@@ -1,0 +1,70 @@
+---
+- name: Create deploy folder
+  ansible.builtin.file:
+    path: /var/deploy
+    state: directory
+- name: Download bootstrap file
+  ansible.builtin.command: wget -NP . https://dokku.com/bootstrap.sh
+  args:
+    chdir: /var/deploy
+    creates: /var/deploy/bootstrap.sh
+- name: Install dokku
+  ansible.builtin.command: bash bootstrap.sh
+  args:
+    chdir: /var/deploy
+    creates: /home/dokku/
+  environment:
+    DOKKU_TAG: v0.31.4
+- ansible.builtin.command: "dokku domains:set-global {{domain_name}}"
+- name: Add public key to dokku
+  ansible.builtin.shell: "curl 'https://github.com/voidfiles.keys' | dokku ssh-keys:add admin"
+  register: result
+  failed_when:
+    - result.rc != 0
+    - '"Duplicate ssh key name" not in result.stderr'
+- name: Add virtualhost keys
+  ansible.builtin.shell: "cat ~/.ssh/authorized_keys | dokku ssh-keys:add admin"
+  when: development == "true"
+  register: result
+  failed_when:
+    - result.rc != 0
+    - '"Duplicate ssh key name" not in result.stderr'
+- name: Install plugins
+  ansible.builtin.shell: "dokku plugin:list | grep '{{ item.name }}' || dokku plugin:install {{item.url}} {{item.name}}"
+  loop:
+    - { "url": "https://github.com/dokku/dokku-postgres.git", "name": "postgres"}
+    - { "url": "https://github.com/dokku/dokku-redis.git", "name": "redis"}
+    - { "url": "https://github.com/crisward/dokku-require.git", "name": "require"}
+- name: Install plugin dependencies
+  ansible.builtin.shell: "dokku plugin:install-dependencies"
+- name: Start Vector
+  ansible.builtin.shell: "dokku logs:vector-start"
+- name: Global vector logs
+  ansible.builtin.shell: "dokku logs:set --global vector-sink 'influxdb_logs://?endpoint=influxdb.{{domain_name}}&bucket=bear&org=bear&database=bear&token=bear'"
+# - name: Install dnsmasq
+#   when: development == "true"
+#   ansible.builtin.package:
+#     name: dnsmasq
+#     state: present
+# - name: create an upstream /etc/dnsmasq.d/upstream
+#   when: development == "true"
+#   ansible.builtin.template:
+#     src: upstream.j2
+#     dest: /etc/dnsmasq.d/upstream
+# - name: Turn off systemdstuff
+#   when: development == "true"
+#   ansible.builtin.lineinfile:
+#     path: /etc/systemd/resolved.conf
+#     regexp: 'DNSStubListener=no'
+#     line: "DNSStubListener=no"
+# - name: Restart systemd-resolved
+#   when: development == "true"
+#   ansible.builtin.service:
+#     name: systemd-resolved
+#     state: restarted
+# - name: Restart systemd-resolved
+#   when: development == "true"
+#   ansible.builtin.service:
+#     name: dnsmasq
+#     state: started
+    

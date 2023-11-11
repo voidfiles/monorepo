@@ -1,0 +1,60 @@
+---
+- name: Retrieve password for KITT when already signed in to 1Password
+  ansible.builtin.debug:
+    var: lookup('community.general.onepassword', 'Tailscale Provision Ephemeral', field='password')
+- ansible.builtin.include_role:
+    name:  artis3n.tailscale
+  vars:
+    # Example pulling the API key from the env vars on the host running Ansible
+    tailscale_authkey: "{{ lookup('onepassword', 'Tailscale Provision Ephemeral', field='password') }}"
+    tailscale_args: "--hostname=localdev"
+  when: development == "true"
+- command: sudo tailscale ip --4
+  register: tailscale_ip_cmd
+- set_fact:
+    tailscale_ip: "{{ tailscale_ip_cmd.stdout }}"
+
+- name: create a public zone for rumproarious.com
+  become: false
+  delegate_to: localhost
+  amazon.aws.route53_zone:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_access_key: "{{ aws_secret_access_key }}"
+    zone: "rumproarious.com"
+  register: route53_zone_create_result
+
+- name: Fetch zone information for rumproarious.com
+  become: false
+  delegate_to: localhost
+  amazon.aws.route53_info:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_access_key: "{{ aws_secret_access_key }}"
+    hosted_zone_id: "{{ route53_zone_create_result.zone_id }}"
+    hosted_zone_method: details
+    query: hosted_zone
+  register: route53_zone_information
+  until: "route53_zone_information.HostedZone and route53_zone_information.HostedZone.Name == 'rumproarious.com.'"
+  retries: 30
+  delay: 10
+
+- name: Create an A record for {{ domain_name }}
+  become: false
+  delegate_to: localhost
+  amazon.aws.route53:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_access_key: "{{ aws_secret_access_key }}"
+    command: create
+    zone: "rumproarious.com"
+    record: "{{ domain_name }}"
+    overwrite: true
+    type: A
+    ttl: 60
+    value: "{{ tailscale_ip }}"
+
+
+- name: Wait for DNS propagation {{ domain_name }}
+  debug:
+    msg: waiting on {{ domain_name }} to be {{tailscale_ip}}
+  until: lookup('community.general.dig', domain_name, '@8.8.8.8') == tailscale_ip
+  retries: 30
+  delay: 10
