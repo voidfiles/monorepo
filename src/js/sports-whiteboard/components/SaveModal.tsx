@@ -1,6 +1,6 @@
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { SaveIcon } from "@heroicons/react/outline";
+import { DocumentArrowDownIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import type { RootState } from "../lib/state/store";
 
@@ -60,7 +60,7 @@ const SaveModal: React.FC<SaveModalInterface> = ({ open, done }) => {
             <div className="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div className="sm:flex sm:items-start">
                 <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10">
-                  <SaveIcon
+                  <DocumentArrowDownIcon
                     className="h-6 w-6 text-indigo-600"
                     aria-hidden="true"
                   />

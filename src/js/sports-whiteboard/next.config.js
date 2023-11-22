@@ -12,12 +12,16 @@ const sentryWebpackPluginOptions = {
   //   urlPrefix, include, ignore
 
   silent: true, // Suppresses all logs
+  hideSourceMaps: false,
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 };
 
 const nextConfig = {
   reactStrictMode: true,
+  sentry: {
+    hideSourceMaps: false,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

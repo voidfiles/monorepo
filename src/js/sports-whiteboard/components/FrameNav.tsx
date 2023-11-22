@@ -1,8 +1,8 @@
 import {
-  ClipboardCopyIcon,
+  ClipboardIcon,
   PlusIcon,
   QuestionMarkCircleIcon,
-} from "@heroicons/react/outline";
+} from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import HelpModal from "./HelpModal";
 import NavButton from "./NavButton";
@@ -73,7 +73,7 @@ const FrameNav: React.FC = () => {
           tooltipText={"Copy URL"}
           tooltipDir={"right"}
         >
-          <ClipboardCopyIcon className="h-5 w-5 text-gray-400"></ClipboardCopyIcon>
+          <ClipboardIcon className="h-5 w-5 text-gray-400"></ClipboardIcon>
         </NavButton>
         {scene.frameOrder.map((frameID: string, i: number) => {
           const frame = scene.frames[frameID];

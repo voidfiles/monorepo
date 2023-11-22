@@ -1,12 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { PlusCircleIcon, SaveIcon, XIcon } from "@heroicons/react/outline";
+import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import DangerModal from "../components/DangerModal";
-import { MenuIcon } from "@heroicons/react/outline";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import SaveModal from "./SaveModal";
 import ExportModal from "./ExportModal";
-import { DocumentDownloadIcon } from "@heroicons/react/solid";
+import { DocumentArrowDownIcon } from "@heroicons/react/24/outline";
 import SlideNavButton from "./SlideNavButton";
 import { User } from "firebase/auth";
 import { useRouter } from "next/router";
@@ -109,7 +109,7 @@ const StateDropdown: React.FC<StateDropdownNav> = ({ user }) => {
               setOpen(true);
             }}
           >
-            <MenuIcon className="h-6 w-6" aria-hidden="true" />
+            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </NavButton>
           <NavButton
             id="save-button"
@@ -125,7 +125,7 @@ const StateDropdown: React.FC<StateDropdownNav> = ({ user }) => {
               save();
             }}
           >
-            <SaveIcon className="h-6 w-6"></SaveIcon>
+            <DocumentArrowDownIcon className="h-6 w-6"></DocumentArrowDownIcon>
           </NavButton>
           <NavButton
             id="export-button"
@@ -143,7 +143,7 @@ const StateDropdown: React.FC<StateDropdownNav> = ({ user }) => {
               setDialog("export");
             }}
           >
-            <DocumentDownloadIcon className="h-6 w-6"></DocumentDownloadIcon>
+            <DocumentArrowDownIcon className="h-6 w-6"></DocumentArrowDownIcon>
           </NavButton>
         </nav>
       )}
@@ -180,7 +180,7 @@ const StateDropdown: React.FC<StateDropdownNav> = ({ user }) => {
                             onClick={() => setOpen(false)}
                           >
                             <span className="sr-only">Close panel</span>
-                            <XIcon className="h-6 w-6" aria-hidden="true" />
+                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                           </button>
                         </div>
                       </div>
@@ -228,7 +228,7 @@ const StateDropdown: React.FC<StateDropdownNav> = ({ user }) => {
                         }}
                         selected={false}
                       >
-                        <SaveIcon className="h-5 w-5 inline pr-1"></SaveIcon>
+                        <DocumentArrowDownIcon className="h-5 w-5 inline pr-1"></DocumentArrowDownIcon>
                         <span>Save</span>
                       </SlideNavButton>
                       <SlideNavButton
@@ -238,7 +238,7 @@ const StateDropdown: React.FC<StateDropdownNav> = ({ user }) => {
                         }}
                         selected={false}
                       >
-                        <DocumentDownloadIcon className="h-5 w-5 inline pr-1"></DocumentDownloadIcon>
+                        <DocumentArrowDownIcon className="h-5 w-5 inline pr-1"></DocumentArrowDownIcon>
                         <span>Export</span>
                       </SlideNavButton>
                       <SlideNavButton selected={false}>

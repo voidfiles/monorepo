@@ -2,10 +2,9 @@
 import Head from "next/head";
 import DrawNav from "../components/DrawNav";
 import StateDropdown from "../components/StateDropdown";
-import LiveNav from "../components/LiveNav";
 import FrameNav from "../components/FrameNav";
 import { User } from "firebase/auth";
-import { MinusIcon, PlusIcon } from "@heroicons/react/outline";
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import PlayStage from "./PlayStage";
 import PlayerMenu from "./PlayerMenu";
 

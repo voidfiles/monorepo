@@ -1,8 +1,8 @@
 import ModeButton from "./ModeButton";
-import { ArrowRightIcon } from "@heroicons/react/solid";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import OffenseSvg from "../public/offenseIcon.svg";
 import DefenseSvg from "../public/defenseIcon.svg";
-import { CheckCircleIcon, DocumentTextIcon } from "@heroicons/react/outline";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import NavButton from "./NavButton";
 import { isTouchDevice } from "../lib/detect";
 import { useSelector, useDispatch } from "react-redux";

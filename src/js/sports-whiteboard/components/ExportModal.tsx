@@ -7,12 +7,12 @@ import React, {
 } from "react";
 import { createRoot } from "react-dom/client";
 import { Dialog, Transition } from "@headlessui/react";
-import { ClipboardCopyIcon, SaveAsIcon } from "@heroicons/react/outline";
-import { DownloadIcon, SaveIcon } from "@heroicons/react/solid";
+import { ClipboardIcon } from "@heroicons/react/24/outline";
+import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
 import MySwitch from "./Switch";
 import produce from "immer";
 import { buildStore } from "../lib/state/store";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { useSelector } from "react-redux";
 import type { RootState } from "../lib/state/store";
 import Snapshotter from "./Snapshotter";
@@ -129,7 +129,7 @@ const ExportModal: React.FC<ExportModalInterface> = ({ open, done }) => {
             <div className="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all my-8 sm:align-middle sm:max-w-7xl  sm:w-full p-6">
               <div className="sm:flex sm:items-start">
                 <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10">
-                  <SaveAsIcon
+                  <DocumentArrowDownIcon
                     className="h-6 w-6 text-indigo-600"
                     aria-hidden="true"
                   />
@@ -155,7 +155,7 @@ const ExportModal: React.FC<ExportModalInterface> = ({ open, done }) => {
                               download={`${playName}_${dt}_${i}`}
                               href={imgURL}
                             >
-                              <SaveIcon className="w-4 h-4 pr-1"></SaveIcon>
+                              <DocumentArrowDownIcon className="w-4 h-4 pr-1"></DocumentArrowDownIcon>
                               <span>Save</span>
                             </a>
                             <button
@@ -164,7 +164,7 @@ const ExportModal: React.FC<ExportModalInterface> = ({ open, done }) => {
                                 copyBlob(i);
                               }}
                             >
-                              <ClipboardCopyIcon className="w-4 h-4 pr-1"></ClipboardCopyIcon>
+                              <ClipboardIcon className="w-4 h-4 pr-1"></ClipboardIcon>
                               <span>Copy</span>
                             </button>
                           </div>
@@ -192,14 +192,14 @@ const ExportModal: React.FC<ExportModalInterface> = ({ open, done }) => {
                       className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
                       onClick={downloadAll}
                     >
-                      <DownloadIcon className="w-5 h-5"></DownloadIcon> Download
+                      <DocumentArrowDownIcon className="w-5 h-5"></DocumentArrowDownIcon> Download
                       All
                     </button>
                     <button
                       className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
                       onClick={downloadJSON}
                     >
-                      <DownloadIcon className="w-5 h-5"></DownloadIcon> Download
+                      <DocumentArrowDownIcon className="w-5 h-5"></DocumentArrowDownIcon> Download
                       JSON
                     </button>
                     <button

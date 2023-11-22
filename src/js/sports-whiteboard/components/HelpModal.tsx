@@ -2,13 +2,13 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   ArrowRightIcon,
-  FastForwardIcon,
+  ChevronDoubleRightIcon,
   PlayIcon,
-  PlusSmIcon,
+  PlusSmallIcon,
   QuestionMarkCircleIcon,
-  RewindIcon,
+  ChevronLeftIcon,
   TrashIcon,
-} from "@heroicons/react/outline";
+} from "@heroicons/react/24/outline";
 import OffenseSvg from "../public/offense.svg";
 import DefenseSvg from "../public/defense.svg";
 
@@ -81,7 +81,7 @@ const HelpModal: React.FC<HelpModalInterface> = ({ open, close }) => {
                     <div className="">
                       <p className="font-medium">Frame Control</p>
                       <p>
-                        <PlusSmIcon className="h-5 w-5 pr-1 inline"></PlusSmIcon>
+                        <PlusSmallIcon className="h-5 w-5 pr-1 inline"></PlusSmallIcon>
                         <span>(n) Add Frame to play</span>
                       </p>
                       <div>
@@ -108,11 +108,11 @@ const HelpModal: React.FC<HelpModalInterface> = ({ open, close }) => {
                         <span>(space) Play Frames from start</span>
                       </div>
                       <div>
-                        <RewindIcon className="h-5 w-5 pr-1 inline"></RewindIcon>
+                        <ChevronLeftIcon className="h-5 w-5 pr-1 inline"></ChevronLeftIcon>
                         <span>(←) Move one frame back</span>
                       </div>
                       <div>
-                        <FastForwardIcon className="h-5 w-5 pr-1 inline"></FastForwardIcon>
+                        <ChevronDoubleRightIcon className="h-5 w-5 pr-1 inline"></ChevronDoubleRightIcon>
                         <span>(←) Move one frame forward</span>
                       </div>
                       <div>

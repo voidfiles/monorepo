@@ -1,4 +1,4 @@
-import { CubeIcon } from "@heroicons/react/outline";
+import { CubeIcon } from "@heroicons/react/24/solid"
 
 type LoadingInput = {};
 

@@ -1,8 +1,8 @@
 import {
-  FastForwardIcon,
-  RewindIcon,
+  ChevronDoubleRightIcon,
+  ChevronDoubleLeftIcon,
   TrashIcon,
-} from "@heroicons/react/outline";
+} from "@heroicons/react/24/outline";
 import React from "react";
 import NavButton from "./NavButton";
 import { useDispatch } from "react-redux";
@@ -34,7 +34,7 @@ const LiveNav: React.FC<LiveNavProps> = ({ position }) => {
         showKeyboardShortcut={false}
         tooltipDir={position == "top" ? "bottom" : "top"}
       >
-        <RewindIcon className="h-6 w-6"></RewindIcon>
+        <ChevronDoubleLeftIcon className="h-6 w-6"></ChevronDoubleLeftIcon>
       </NavButton>
       <NavButton
         id={"next-button"}
@@ -50,7 +50,7 @@ const LiveNav: React.FC<LiveNavProps> = ({ position }) => {
         showKeyboardShortcut={false}
         tooltipDir={position == "top" ? "bottom" : "top"}
       >
-        <FastForwardIcon className="h-6 w-6"></FastForwardIcon>
+        <ChevronDoubleRightIcon className="h-6 w-6"></ChevronDoubleRightIcon>
       </NavButton>
       <NavButton
         id={"delete-button"}

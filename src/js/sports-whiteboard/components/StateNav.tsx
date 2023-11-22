@@ -1,4 +1,4 @@
-import { SaveIcon, UploadIcon } from "@heroicons/react/solid";
+import { DocumentArrowDownIcon, DocumentArrowUpIcon } from "@heroicons/react/24/outline";
 
 interface StateNav {}
 
@@ -54,10 +54,10 @@ const StateNav: React.FC<StateNav> = ({}) => {
           console.log("save on click");
         }}
       >
-        <SaveIcon className="w-5 h-5"></SaveIcon>
+        <DocumentArrowDownIcon className="w-5 h-5"></DocumentArrowDownIcon>
       </button>
       <button className={buttonClasses(false).join(" ")}>
-        <UploadIcon className="w-5 h-5"></UploadIcon>
+        <DocumentArrowUpIcon className="w-5 h-5"></DocumentArrowUpIcon>
       </button>
     </nav>
   );
