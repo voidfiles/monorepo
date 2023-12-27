@@ -1,130 +1,199 @@
-import { AnyAction, Dispatch } from "@reduxjs/toolkit";
-import Tool, { StageEvent } from "./Tool";
-import { StageState, changeMode } from "../../lib/store/features/stage/stageSlice";
-import { Point } from "../StageTypes";
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import Tool, { Dataset, EventState, StageEvent } from './Tool';
+import { changeMode } from '../../lib/store/features/stage/stageSlice';
+import { Point } from '../StageTypes';
+import { StageState } from '@lib/store/features/stage/stageTools';
+import Konva from 'konva';
+import { RootState } from '@lib/store';
 
 interface ToolIndex {
-    [index: string]: Tool;
+  [index: string]: Tool;
 }
 
-type PointResolver = (point: Point) => Point;
+type PointResolver = (point: Point, stage: StageState) => Point;
+type ExecuteEvent = {
+  method: string;
+  e: Konva.KonvaEventObject<MouseEvent | WheelEvent>;
+  state: EventState;
+  overideMode?: string;
+};
 
-class ToolRegister {
-    mode: string = "";
-    tools: ToolIndex = {};
-    dispatch: Dispatch;
-    pointResolver: PointResolver;
-    ready: boolean = false;
-    stage: StageState;
+const findGroup = (
+  target: Konva.Shape | Konva.Stage | Konva.Node
+): Konva.Group | undefined => {
+  if (target.constructor.name === 'Group') {
+    return target as Konva.Group;
+  }
 
-    register(tool: Tool) {
-        this.tools[tool.mode] = tool
-        const t = this;
-        tool.onRegister((action: AnyAction) => {
-            return t.dispatcher(action);
-        }, this.setMode);
+  if (target.parent) {
+    return findGroup(target.parent);
+  }
+};
+
+export class ToolRegister {
+  tools: ToolIndex = {};
+  dispatch: Dispatch;
+  pointResolver: PointResolver;
+  ready: boolean = false;
+  konvaStage: Konva.Stage;
+  stage: StageState;
+  stateDownload?: HTMLAnchorElement;
+
+  register(tool: Tool, mode: string) {
+    this.tools[mode] = tool;
+    const t = this;
+    tool.onRegister((action: AnyAction) => {
+      return t.dispatcher(action);
+    }, this.setMode);
+  }
+
+  hotkeys(): Array<[string, () => void]> {
+    return Object.values(this.tools).flatMap((tool) => {
+      return tool.hotkeys().map((a) => a);
+    });
+  }
+
+  dispatcher(action: AnyAction) {
+    this.dispatch(action);
+  }
+
+  setDispatch(dispatch: Dispatch) {
+    this.dispatch = dispatch;
+  }
+
+  setKonvaStage(stage: Konva.Stage) {
+    this.konvaStage = stage;
+  }
+
+  setStageState(state: StageState) {
+    this.stage = state;
+  }
+
+  setStateDownload(el: HTMLAnchorElement | null) {
+    if (el) {
+      this.stateDownload = el;
+    } else {
+      this.stateDownload = undefined;
+    }
+  }
+
+  triggerDownload() {
+    console.log('Triggering a download of state', this.stateDownload);
+    this.stateDownload!.click();
+  }
+
+  setMode = (mode: string, event?: StageEvent, fromMode?: string) => {
+    this.dispatch ? this.dispatch(changeMode(mode)) : null;
+
+    if (!this.tools[mode]) {
+      throw mode + ' not in the available modes';
     }
 
-    dispatcher(action: AnyAction) {
-        this.dispatch(action);
+    if (event) {
+      this.executeEvent(event);
     }
 
-    setDispatch(dispatch: Dispatch) {
-        this.dispatch = dispatch;
+    if (fromMode) {
+      this.setMode(fromMode);
+    }
+  };
+
+  resolveKonvaEventToStageEvent(
+    event: Konva.KonvaEventObject<MouseEvent | WheelEvent>,
+    method: string,
+    state: () => RootState
+  ): StageEvent {
+    const box = event.target.getClientRect();
+    const centerX = box.x + box.width / 2;
+    const centerY = box.y + box.height / 2;
+
+    const baseData = {
+      target: event.target.id(),
+      method: method,
+      x: event.evt.x,
+      y: event.evt.y,
+      clientX: event.evt.clientX,
+      clientY: event.evt.clientY,
+      altKey: event.evt.altKey,
+      ctrlKey: event.evt.ctrlKey,
+      shiftKey: event.evt.shiftKey,
+      targetPosition: {
+        x: event.target.x(),
+        y: event.target.y()
+      },
+      targetCenter: {
+        x: centerX,
+        y: centerY
+      }
+    };
+
+    if (this.konvaStage) {
+      const pointer = this.konvaStage.getPointerPosition()!;
+      baseData['stagePointer'] = Number.isNaN(pointer.x)
+        ? null
+        : { x: pointer.x, y: pointer.y };
     }
 
-    setStageState(state: StageState) {
-        this.stage = state;
+    if (this.konvaStage) {
+      const pointer = this.konvaStage.getRelativePointerPosition()!;
+      baseData['stageRelativePointer'] = Number.isNaN(pointer.x)
+        ? null
+        : { x: pointer.x, y: pointer.y };
     }
 
-    updateModeFromState(mode: string) {
-        if(!this.tools[mode]) {
-            throw(mode + " not in the available modes");
-        }
-
-        this.mode = mode;
+    if (this.konvaStage) {
+      baseData['stagePosition'] = {
+        x: this.konvaStage.x(),
+        y: this.konvaStage.y()
+      };
     }
 
-    setMode = (mode: string, event?: StageEvent, fromMode?: string) => {
-        console.table({
-            msg: "setMode",
-            mode: mode,
-            fromMode: fromMode,
-        })
-        this.dispatch ? this.dispatch(changeMode(mode)) : null;
-
-        if(!this.tools[mode]) {
-            throw(mode + " not in the available modes");
-        }
-
-        this.mode = mode
-
-        if (event) {
-            this.executeEvent(event);
-        }
-
-        if (fromMode) {
-            this.setMode(fromMode);
-        }
+    if ('getRelativePointerPosition' in event.target) {
+      const pointer = event.target.getRelativePointerPosition()!;
+      baseData['lastTarget'] = findGroup(event.target);
+      baseData['targetRelativePointer'] = {
+        x: pointer.x,
+        y: pointer.y
+      };
     }
 
-    setPointResolver(svg: SVGSVGElement) {
-        this.pointResolver = (point: Point) => {
-            const domPoint = svg.createSVGPoint();
-            domPoint.x = point.x;
-            domPoint.y = point.y;
-            const m = svg.getScreenCTM()!
-            var cursorpt =  domPoint.matrixTransform(m.inverse());
-    
-            const p: Point = {
-                x: cursorpt.x,
-                y: cursorpt.y,
-            }
-    
-            return p
-        };
-        this.ready = true;
+    if ('deltaY' in event.evt) {
+      baseData['deltaY'] = event.evt.deltaY;
+      baseData['deltaX'] = event.evt.deltaX;
     }
 
-    resolveReactEventToStageEvent(event: React.MouseEvent, method: string): StageEvent {
-        const p = this.pointResolver({
-            x: event.clientX,
-            y: event.clientY,
-        })
+    const e: StageEvent = {
+      ...baseData,
+      dataset: {},
+      state: state()
+    };
 
-        const e: StageEvent = {
-            target: event.target['id'],
-            method: method,
-            x: p.x,
-            y: p.y,
-            clientX: event.clientX,
-            clientY: event.clientY,
-            state: this.stage,
-        }
+    return e;
+  }
 
-        return e;
+  executeEvent(e: StageEvent, overideMethod?: string): void {
+    const mode = overideMethod || e.state.stage.mode;
+
+    if (this.tools[mode].debug) {
+      this.tools[mode].debugEvent(e);
     }
 
-    executeEvent(e: StageEvent): void {
-        return this.tools[this.mode][e.method](e);
-    }
+    return this.tools[mode][e.method](e);
+  }
 
-    buildEventHandler(method: string): (event: React.MouseEvent) => void {
-        const t = this;
-        return (event: React.MouseEvent) => {
-            if (!this.ready) {
-                return;
-            }
-            const e = t.resolveReactEventToStageEvent(event, method);
-            // console.count(method)
-            if (method != 'onMouseMove') {
-                console.log(`dispatching ${e.target} ${t.mode} ${method}`, e)
-            }
-            return t.executeEvent(e);
-        }
+  executeKonvaEvent({ method, e, state, overideMode }: ExecuteEvent): void {
+    const stageEvent = this.resolveKonvaEventToStageEvent(
+      e,
+      method,
+      () => state
+    );
+    if (method != 'onMouseMove' && method != 'onWheel') {
+      console.debug(`dispatching target: ${e.target} method: ${method} e:`, e);
     }
+    this.executeEvent(stageEvent, overideMode);
+  }
 }
 
 export default function BuildToolRegistry(): ToolRegister {
-    return new ToolRegister();
+  return new ToolRegister();
 }

@@ -7,11 +7,13 @@ import {
 export class PlayerTool extends Tool {
   childObject: (e: StageEvent) => StageItemForCreate;
   onClick(e: StageEvent): void {
+    console.log('On Click');
     if (e.target) {
       return;
     }
 
     this.dispatch(addChild(this.childObject(e)));
+    this.setMode('hand');
   }
 
   onMouseDown(event: StageEvent): void {

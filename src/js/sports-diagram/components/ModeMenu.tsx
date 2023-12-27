@@ -1,63 +1,78 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import type { RootState } from '../lib/store/store';
-import * as ToggleGroup from '@radix-ui/react-toggle-group';
-import { CircleIcon, XIcon, HandIcon, LineChartIcon } from 'lucide-react';
+import { ToggleGroup, ToggleGroupItem } from '../components/ui/toggle-group';
+import {
+  CircleIcon,
+  XIcon,
+  TrendingUpIcon,
+  HandIcon,
+  LucideIcon,
+  SquareIcon
+} from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeMode } from '../lib/store/features/stage/stageSlice';
 
-const toggleGroupItemClasses =
-  'hover:bg-violet3 color-mauve11 data-[state=on]:bg-violet6 data-[state=on]:text-violet12 flex h-[35px] w-[35px] items-center justify-center bg-white text-base leading-4 first:rounded-l last:rounded-r focus:z-10 focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none';
+const Inside = ({
+  Icon,
+  shortcut,
+  size = 18
+}: {
+  Icon: LucideIcon;
+  shortcut: string;
+  size: number;
+}): ReactNode => {
+  return (
+    <div className="relative">
+      <Icon size={size} strokeWidth={1} className="m-1" />
+      <div className="absolute -bottom-1.5 -right-2 font-light">{shortcut}</div>
+    </div>
+  );
+};
 
-const ModeMenu = () => {
+const ToggleModeMenu = () => {
   const stage = useSelector((state: RootState) => state.stage);
   const dispatch = useDispatch();
 
   return (
-    <div className="absolute top-0">
-      <ToggleGroup.Root
-        className="inline-flex bg-mauve6 rounded shadow-[0_2px_10px] shadow-blackA4 space-x-px"
-        type="single"
-        value={stage.mode}
-        aria-label="Text alignment"
-        onValueChange={(value: string) => {
-          if (value) {
-            if (value == stage.mode) {
-              dispatch(changeMode('hand'));
-            } else {
-              dispatch(changeMode(value));
-            }
+    <ToggleGroup
+      type="single"
+      size={'sm'}
+      value={stage.mode}
+      aria-label="Hand"
+      className="border rounded bg-white shadow-md"
+      onValueChange={(value: string) => {
+        if (value) {
+          if (value == stage.mode) {
+            dispatch(changeMode('hand'));
+          } else {
+            dispatch(changeMode(value));
           }
-        }}
-      >
-        <ToggleGroup.Item
-          className={toggleGroupItemClasses}
-          value="hand"
-          aria-label="Left aligned"
-        >
-          <HandIcon />
-        </ToggleGroup.Item>
-        <ToggleGroup.Item
-          className={toggleGroupItemClasses}
-          value="circle"
-          aria-label="Left aligned"
-        >
-          <CircleIcon />
-        </ToggleGroup.Item>
-        <ToggleGroup.Item
-          className={toggleGroupItemClasses}
-          value="x"
-          aria-label="Center aligned"
-        >
-          <XIcon />
-        </ToggleGroup.Item>
-        <ToggleGroup.Item
-          className={toggleGroupItemClasses}
-          value="line"
-          aria-label="Center aligned"
-        >
-          <LineChartIcon />
-        </ToggleGroup.Item>
-      </ToggleGroup.Root>
+        }
+      }}
+    >
+      <ToggleGroupItem value="hand" aria-label="Place offense">
+        <Inside Icon={HandIcon} shortcut="h" size={15} />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="circle" aria-label="Place defense">
+        <Inside Icon={CircleIcon} shortcut="o" size={18} />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="x" aria-label="Center aligned">
+        <Inside Icon={XIcon} shortcut="x" size={18} />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="line" aria-label="Draw palyer path">
+        <Inside Icon={TrendingUpIcon} shortcut="c" size={18} />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="frame" aria-label="Draw frame on screen">
+        <Inside Icon={SquareIcon} shortcut="f" size={18} />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  );
+};
+
+const ModeMenu = () => {
+  return (
+    <div className="flex justify-center">
+      <ToggleModeMenu></ToggleModeMenu>
     </div>
   );
 };
