@@ -15,7 +15,7 @@ class AssetToBookmarkletPlugin {
                     const asset = assets[assetName];
                     const content = 'javascript:' + encodeURIComponent('(function(){' + asset.source() + '})()');
                     compilation.emitAsset(assetName + '.bookmarklet', new webpack.sources.RawSource(content))
-                    const htmlContent = "<html><body><p><a href=\""+content+"\">Send To Obsidian</a></p><p><textarea>"+content+"</textarea></p></body></html>";
+                    const htmlContent = "<html><body><p><a href=\""+content+"\">Send To Obsidian</a></p><p><textarea width='100%' height='10%' onclick='this.select()'>"+content+"</textarea></p></body></html>";
                     compilation.emitAsset('index.html', new webpack.sources.RawSource(htmlContent))
                     const mdContent = "# Send To Obsidian\n\n<p><a href=\""+content+"\">Send To Obsidian</a></p>";
                     compilation.emitAsset('index.md', new webpack.sources.RawSource(mdContent))
@@ -31,6 +31,7 @@ module.exports = {
     },
     mode: 'production',
     output: {
+        publicPath: '',
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
