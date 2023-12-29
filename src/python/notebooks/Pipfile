@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+httpx = "*"
+pytest-httpx = "*"
+pytest-asyncio = "*"
+black = "*"
+pycodestyle = "*"
+flake8 = "*"
+jinja2 = "*"
+honcho = "*"
+nanoid = "*"
+scrapy = "*"
+
+[dev-packages]
+pytest-django = "*"
+
+[requires]
+python_version = "3.11"
+python_full_version = "3.11.6"

@@ -1,0 +1,12 @@
+{
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "[jinja-html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+}
