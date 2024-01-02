@@ -1,0 +1,8 @@
+github.com/beevik/ntp v0.3.0 h1:xzVrPrE4ziasFXgBVBZJDP0Wg/KpMwk2KHJ4Ba8GrDw=
+github.com/beevik/ntp v0.3.0/go.mod h1:hIHWr+l3+/clUnF44zdK+CWW7fO8dR5cIylAQ76NRpg=
+github.com/gokrazy/gokrazy v0.0.0-20231231104055-43fde1dc2fc7 h1:fh5qUJKxdPX3hU7R1TRWul+HY2OSSQ0wvcSYeGqpw6Y=
+github.com/gokrazy/gokrazy v0.0.0-20231231104055-43fde1dc2fc7/go.mod h1:FOTcHsN9okcM6wLX58MC33A8i5U3AI+sYD5wsuWee1U=
+golang.org/x/net v0.17.0 h1:pVaXccu2ozPjCXewfr1S7xza/zcXTity9cCdXQYSjIM=
+golang.org/x/net v0.17.0/go.mod h1:NxSsAGuq816PNPmqtQdLE42eU2Fs7NoRIZrHJAlaCOE=
+golang.org/x/sys v0.13.0 h1:Af8nKPmuFypiUBjVoU9V20FiaFXOcuZI21p0ycVYYGE=
+golang.org/x/sys v0.13.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

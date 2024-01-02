@@ -1,0 +1,57 @@
+{
+    "Hostname": "living-room-kiosk",
+    "SerialConsole": "ttyS0,115200",
+    "Update": {
+        "HTTPPassword": "wKLayOKtYzUjWhomy1hW"
+    },
+    "Packages": [
+        "github.com/gokrazy/fbstatus",
+        "github.com/gokrazy/hello",
+        "github.com/gokrazy/serial-busybox",
+        "github.com/gokrazy/breakglass",
+        "github.com/gokrazy/wifi",
+        "tailscale.com/cmd/tailscaled",
+        "tailscale.com/cmd/tailscale",
+        "github.com/gokrazy/mkfs",
+        "github.com/gokrazy/iptables",
+        "github.com/gokrazy/nsenter",
+        "github.com/gokrazy/podman",
+        "github.com/greenpau/cni-plugins/cmd/cni-nftables-portmap",
+        "github.com/greenpau/cni-plugins/cmd/cni-nftables-firewall",
+        "github.com/damdo/gokrazy-kiosk"
+    ],
+    "PackageConfig": {
+        "github.com/gokrazy/gokrazy/cmd/randomd": {
+            "ExtraFileContents": {
+                "/etc/machine-id": "4b5c10d57392469cba8e3ab0d295fc08\n"
+            }
+        },
+        "github.com/gokrazy/wifi": {
+            "ExtraFilePaths": {
+                "/etc/wifi.json": "wifi.json"
+            }
+        },
+        "tailscale.com/cmd/tailscale": {
+            "CommandLineFlags": [
+                "up",
+                "--auth-key=tskey-auth-kLNEnE3CNTRL-LwVThN8LsTberWThN8LsTbb3g2876aFDZ",
+                "--ssh"
+            ]
+        },
+        "github.com/damdo/gokrazy-kiosk": {
+            "CommandLineFlags": [
+                "--name", "gokrazy-kiosk",
+                "quay.io/damdo/gokrazy-kiosk-chromium:20230529135304",
+                "/usr/bin/chromium",
+                "--no-sandbox",
+                "--no-first-run",
+                "--password-store=basic",
+                "--simulate-outdated-no-au='Tue, 31 Dec 2199 23:59:59 GMT'",
+                "--noerrdialogs",
+                "--disable-infobars",
+                "--kiosk",
+                "--app='https://play.grafana.org'"
+            ]
+        }
+    }
+}
