@@ -35,10 +35,6 @@
         remote_src: true
       args:
         creates: /usr/local/bin/helm
-    - name: Template a file to /etc/file.conf
-      ansible.builtin.template:
-        src: /mytemplates/foo.j2
-        dest: /var/lib/rancher/k3s/server/manifests/tailnet-operator.yaml
     - name: Install tailscale operator
       ansible.builtin.fetch:
         src: ../tasks/templates/tailscale-operator.yaml.j2
