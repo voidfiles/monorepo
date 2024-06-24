@@ -26,23 +26,11 @@
       when: k8s_running.rc != 0
     - name: Wait for k8s to be up
       ansible.builtin.shell: k3sup ready --kubeconfig ./kubeconfig
-    - name: Setup tailscale operator
-      ansible.builtin.template:
-        src: ../tasks/templates/tailscale-operator.yaml.j2
-        dest: /var/lib/rancher/k3s/server/manifests/tailscale.yaml
-    # - name: run k3s
-    #   import_role:
-    #     name: xanmanning.k3s
-    #   vars:
-    #     k3s_release_version: "{{ lookup('ansible.builtin.env', 'K3S_VERSION') }}"
-    #     k3s_build_cluster: false
-    #     k3s_server:
-    #       bind-address: "{{ tailscale_ip }}"
-    # - name: Specifying a destination path
-    #   ansible.builtin.fetch:
-    #     src: /etc/rancher/k3s/k3s.yaml
-    #     dest: ../root_k3s.yaml
-    #     flat: true
+    - name: Specifying a destination path
+      ansible.builtin.fetch:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: ../root_k3s.yaml
+        flat: true
     # - name: Install helm if not exists
     #   unarchive:
     #     src: https://get.helm.sh/helm-v3.13.1-linux-arm64.tar.gz

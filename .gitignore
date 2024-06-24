@@ -1,2 +1,3 @@
 infra/host.txt
 .DS_Store
+infra/root_k3s.yaml
