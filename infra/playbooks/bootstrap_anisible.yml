@@ -1,0 +1,32 @@
+- hosts: brntgarlic
+  tasks:
+    - name: Set a hostname
+      ansible.builtin.hostname:
+        name: brntgarlic
+    - name: Install tailscale
+      import_tasks: ../tasks/tailscale.yml
+      tags:
+        - tailscale
+    - name: Make sure we have a 'wheel' group
+      group:
+        name: wheel
+        state: present
+    - name: Allow 'wheel' group to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%wheel'
+        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+    - name: Create a user 'ansible' with a home directory
+      ansible.builtin.user:
+        name: ansible
+        groups:
+          - sudo
+          - wheel
+        create_home: yes
+    - name: Set authorized keys taken from url
+      ansible.posix.authorized_key:
+        user: ansible
+        state: present
+        key: https://github.com/voidfiles.keys

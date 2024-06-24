@@ -1,44 +1,63 @@
 - hosts: beast
-  become: true
   vars:
-    local_ansible_become_pass: "{{ lookup('onepassword', 'local_ansible_become_pass', errors='warn') | d(omit) }}"
-    aws_access_key: "{{ lookup('onepassword', 'AWS Access Key', field='access key id', errors='warn') | d(omit) }}"
-    aws_secret_access_key: "{{ lookup('onepassword', 'AWS Access Key', field='secret access key', errors='warn') | d(omit) }}"
+    tailscale_authkey: "{{ lookup('onepassword', 'Tailscale K8S Provison', field='password') }}"
+    oauth_client_id: "{{ lookup('onepassword', 'tailscale:k8s-operator:oauth-client', field='password') }}"
+    oauth_client_secret: "{{ lookup('onepassword', 'tailscale:k8s-operator:oauth-client', field='password') }}"
   tasks:
-    - name: Install tailscale
-      import_tasks: ../tasks/tailscale.yml
-      tags:
-        - tailscale
-    - name: run k3s
-      import_role:
-        name: xanmanning.k3s
-      vars:
-        k3s_release_version: "{{ lookup('ansible.builtin.env', 'K3S_VERSION') }}"
-        k3s_become: true
-        k3s_build_cluster: false
-        k3s_server:
-          cluster-domain: "{{ domain_name }}"
-          bind-address: "{{ tailscale_ip }}"
-    - name: Specifying a destination path
-      ansible.builtin.fetch:
-        src: /etc/rancher/k3s/k3s.yaml
-        dest: ../root_k3s.yaml
-        flat: true
-    - name: Install helm if not exists
-      unarchive:
-        src: https://get.helm.sh/helm-v3.13.1-linux-arm64.tar.gz
-        dest: /usr/local/bin
-        extra_opts: "--strip-components=1"
-        owner: root
-        group: root
-        mode: 0755
-        remote_src: true
-      args:
-        creates: /usr/local/bin/helm
-    - name: Install tailscale operator
-      ansible.builtin.fetch:
+    - name: Check if bin installed
+      ansible.builtin.shell: which k3sup
+      register: k3up
+    - name: Install k3sup bin
+      ansible.builtin.shell: |
+        which k3sup || curl -sLS https://get.k3sup.dev | sudo sh
+      when: k3up.rc != 0
+    - name: Check if k8s is up
+      ansible.builtin.shell: k3sup ready --kubeconfig ./kubeconfig
+      register: k8s_running
+      ignore_errors: true
+    - name: get tailscaile_ip
+      ansible.builtin.shell: tailscale ip --4
+      register: tailscaile_ip
+    - name: Install K8s
+      ansible.builtin.shell: |
+        k3sup install \
+          --local \
+          --k3s-extra-args "--bind-address {{tailscaile_ip.stdout}} --write-kubeconfig-mode 644 --vpn-auth name=tailscale,joinKey={{tailscale_authkey}}"
+      when: k8s_running.rc != 0
+    - name: Wait for k8s to be up
+      ansible.builtin.shell: k3sup ready --kubeconfig ./kubeconfig
+    - name: Setup tailscale operator
+      ansible.builtin.template:
         src: ../tasks/templates/tailscale-operator.yaml.j2
-        dest: /var/lib/rancher/k3s/server/manifests/tailnet-operator.yaml
-      vars:
-        oauth_client_id: "{{ lookup('onepassword', 'tailscale:k8s-operator:oauth-client', field='username', errors='warn') | d(omit) }}"
-        oauth_client_secret: "{{ lookup('onepassword', 'tailscale:k8s-operator:oauth-client', field='password', errors='warn') | d(omit) }}"
+        dest: /var/lib/rancher/k3s/server/manifests/tailscale.yaml
+    # - name: run k3s
+    #   import_role:
+    #     name: xanmanning.k3s
+    #   vars:
+    #     k3s_release_version: "{{ lookup('ansible.builtin.env', 'K3S_VERSION') }}"
+    #     k3s_build_cluster: false
+    #     k3s_server:
+    #       bind-address: "{{ tailscale_ip }}"
+    # - name: Specifying a destination path
+    #   ansible.builtin.fetch:
+    #     src: /etc/rancher/k3s/k3s.yaml
+    #     dest: ../root_k3s.yaml
+    #     flat: true
+    # - name: Install helm if not exists
+    #   unarchive:
+    #     src: https://get.helm.sh/helm-v3.13.1-linux-arm64.tar.gz
+    #     dest: /usr/local/bin
+    #     extra_opts: "--strip-components=1"
+    #     owner: root
+    #     group: root
+    #     mode: 0755
+    #     remote_src: true
+    #   args:
+    #     creates: /usr/local/bin/helm
+    # - name: Install tailscale operator
+    #   ansible.builtin.fetch:
+    #     src: ../tasks/templates/tailscale-operator.yaml.j2
+    #     dest: /var/lib/rancher/k3s/server/manifests/tailnet-operator.yaml
+    #   vars:
+    #     oauth_client_id: "{{ lookup('onepassword', 'tailscale:k8s-operator:oauth-client', field='username', errors='warn') | d(omit) }}"
+    #     oauth_client_secret: "{{ lookup('onepassword', 'tailscale:k8s-operator:oauth-client', field='password', errors='warn') | d(omit) }}"

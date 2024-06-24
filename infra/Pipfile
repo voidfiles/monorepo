@@ -9,6 +9,7 @@ ansible-core = "*"
 botocore = "*"
 boto3 = "*"
 dnspython = "*"
+requests = "*"
 
 [dev-packages]
 

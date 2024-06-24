@@ -1,7 +1,0 @@
----
-- import_tasks: dokku_service.yml
-  vars:
-    service_name: statsd-exporter
-    container_name: prom/statsd-exporter:latest
-    port_map: http:9102:9102
-    disable_checks: true

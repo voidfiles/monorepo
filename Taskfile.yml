@@ -1,0 +1,15 @@
+version: '3'
+includes:
+  infra: ./infra
+dotenv:
+  - .env
+vars:
+  GOARCH:
+    sh: go env GOARCH
+  GOOS:
+    sh: go env GOOS
+tasks:
+  hello:
+    cmds:
+      - echo 'Hello World from Task!'
+    silent: true

@@ -1,0 +1,50 @@
+version: '3'
+tasks:
+  setup:
+    dir: "{{.TASKFILE_DIR}}"
+    cmds:
+      - which -s python3 || brew install python3
+      - which -s pipenv || brew install pipenv
+      - pipenv --python 3
+      - pipenv install
+      - pipenv run ansible --version
+      - pipenv run ansible-galaxy install -r requirements.yml --force
+      - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/{{ .GOOS }}/{{ .GOARCH }}/kubectl > {{.ROOT_DIR}}/bin/kubectl
+      - chmod 755 {{ .ROOT_DIR }}/bin/kubectl
+    status:
+      - test -f {{.ROOT_DIR}}/bin/kubectl
+  bootstap_beast:
+    dir: "{{.TASKFILE_DIR}}"
+    cmds:
+      - pipenv run ansible-playbook -i inventory/hetzner --user root playbooks/bootstrap_anisible.yml
+  provision_beast:
+    dir: "{{.TASKFILE_DIR}}"
+    cmds:
+      - pipenv run ansible-playbook -i inventory/beast playbooks/k3s.yml
+  install_jsonnet:
+    cmds:
+      - go install github.com/google/go-jsonnet/cmd/jsonnet@latest
+    status:
+      - test -f $(go env GOPATH)/bin/jsonnet
+  install_jb:
+    cmds:
+      - go install -a github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest
+    status:
+      - test -f $(go env GOPATH)/bin/jb
+  install_gomplate:
+    cmds:
+      - go install github.com/hairyhenderson/gomplate/v4/cmd/gomplate@latest
+    status:
+      - test -f $(go env GOPATH)/bin/gomplate
+  init_manifests:
+    dir: "{{.TASKFILE_DIR}}/manifests"
+    cmds:
+      - "$(go env GOPATH)/bin/jb init"
+    status:
+      - test -f jsonnetfile.json
+  collect_manifest:
+    dir: "{{.TASKFILE_DIR}}/manifests"
+    deps: [install_jsonnet, install_jb, install_gomplate, init_manifests]
+    cmds:
+      - mkdir -p infra/manifests/.output
+      - op run --env-file="{{ .ROOT_DIR }}/.env" -- $(go env GOPATH)/bin/gomplate --input-dir system/ --output-dir .output/

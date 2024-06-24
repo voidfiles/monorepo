@@ -2,5 +2,10 @@
     "yaml.schemas": {
         "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json": "file:///Users/alex/Documents/codes/monorepo/infra/tasks/prometheus.yml"
     },
-    "go.gopath": ""
+    "go.gopath": "",
+    "go.testOnSave": true,
+    "jsonnet.languageServer.tankaMode": false,
+    "jsonnet.languageServer.jpath": [
+        "infra/manifests/vendor"
+    ],
 }
