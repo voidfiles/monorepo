@@ -21,6 +21,10 @@ tasks:
     dir: "{{.TASKFILE_DIR}}"
     cmds:
       - pipenv run ansible-playbook -i inventory/beast playbooks/k3s.yml
+  fetch_k8s_auth:
+      dir: "{{.TASKFILE_DIR}}"
+      cmds:
+        - scp root@brntgarlic:/etc/rancher/k3s/k3s.yaml {{.TASKFILE_DIR}}/.kubeconfig
   install_jsonnet:
     cmds:
       - go install github.com/google/go-jsonnet/cmd/jsonnet@latest
