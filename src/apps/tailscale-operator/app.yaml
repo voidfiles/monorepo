@@ -1,0 +1,14 @@
+---
+config:
+  kind: helm
+  repository:
+    name: tailscale
+    url: https://pkgs.tailscale.com/helmcharts
+  release:
+    name: tailscale-operator
+    namespace: tailscale
+    chart: tailscale-operator
+    version: 1.68.1
+    values:
+      oauth.clientId: "op://Infra Secrets/x3tlyv6hqx5zlucdpfp2xtpjwe/username"
+      oauth.clientSecret: "op://Infra Secrets/x3tlyv6hqx5zlucdpfp2xtpjwe/password"

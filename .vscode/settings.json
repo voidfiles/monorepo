@@ -4,8 +4,10 @@
     },
     "go.gopath": "",
     "go.testOnSave": true,
+    "editor.formatOnSave": true,
     "jsonnet.languageServer.tankaMode": false,
     "jsonnet.languageServer.jpath": [
-        "infra/manifests/vendor"
+        "infra/manifests/jsonnet/vendor",
+        "infra/manifests/jsonnet/lib"
     ],
 }

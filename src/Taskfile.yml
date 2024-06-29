@@ -1,0 +1,20 @@
+version: '3'
+tasks:
+  load_secrets:
+    dir: "{{ .USER_WORKING_DIR }}"
+    env:
+      KUBECONFIG: "{{ .TASKFILE_DIR }}/../infra/.kubeconfig"
+    deps:
+      - manifest
+    cmds:
+      - cat .generated/secrets.yaml | op inject > .generated/secrets.yaml
+  metadata:
+    dir: "{{ .TASKFILE_DIR }}/../infra/kpaas/"
+    cmds:
+      - poetry run kpaas metadata --path={{ .USER_WORKING_DIR }}
+  apply:
+    dir: "{{ .TASKFILE_DIR }}/../infra/kpaas/"
+    env:
+      KUBECONFIG: "{{ .TASKFILE_DIR }}/../infra/.kubeconfig"
+    cmds:
+      - poetry run kpaas apply --path={{ .USER_WORKING_DIR }}
