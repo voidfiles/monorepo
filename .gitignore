@@ -2,3 +2,4 @@ infra/host.txt
 .DS_Store
 infra/root_k3s.yaml
 *.generated
+*__pycache__*

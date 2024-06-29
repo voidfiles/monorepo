@@ -1,0 +1,20 @@
+---
+config:
+  kind: helm
+  repository:
+    name: kubernetes-dashboard
+    url: https://kubernetes.github.io/dashboard/
+  release:
+    name: kubernetes-dashboard
+    namespace: kubernetes-dashboard
+    chart: kubernetes-dashboard
+    version: 7.5.0
+  resources:
+    - kind: ingress
+      name: kubedash
+      audience: internal
+      hostname: kubedash
+      namespace: kubernetes-dashboard
+      backend:
+        service: kubernetes-dashboard-kong-proxy
+        port: 443
