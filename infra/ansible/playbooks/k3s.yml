@@ -1,0 +1,33 @@
+- hosts: beast
+  vars:
+    tailscale_authkey: "{{ lookup('onepassword', 'Tailscale K8S Provison', field='password') }}"
+    oauth_client_id: "{{ lookup('onepassword', 'tailscale:k8s-operator:oauth-client', field='password') }}"
+    oauth_client_secret: "{{ lookup('onepassword', 'tailscale:k8s-operator:oauth-client', field='password') }}"
+  tasks:
+    - name: Check if bin installed
+      ansible.builtin.shell: which k3sup
+      register: k3up
+    - name: Install k3sup bin
+      ansible.builtin.shell: |
+        which k3sup || curl -sLS https://get.k3sup.dev | sudo sh
+      when: k3up.rc != 0
+    - name: Check if k8s is up
+      ansible.builtin.shell: k3sup ready --kubeconfig ./kubeconfig
+      register: k8s_running
+      ignore_errors: true
+    - name: get tailscaile_ip
+      ansible.builtin.shell: tailscale ip --4
+      register: tailscaile_ip
+    - name: Install K8s
+      ansible.builtin.shell: |
+        k3sup install \
+          --local \
+          --k3s-extra-args "--bind-address {{tailscaile_ip.stdout}} --write-kubeconfig-mode 644 --vpn-auth name=tailscale,joinKey={{tailscale_authkey}}"
+      when: k8s_running.rc != 0
+    - name: Wait for k8s to be up
+      ansible.builtin.shell: k3sup ready --kubeconfig ./kubeconfig
+    - name: Specifying a destination path
+      ansible.builtin.fetch:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: ../root_k3s.yaml
+        flat: true

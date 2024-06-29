@@ -3,10 +3,9 @@ tasks:
   setup:
     dir: "{{.TASKFILE_DIR}}"
     cmds:
-      - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/{{ .GOOS }}/{{ .GOARCH }}/kubectl > {{.ROOT_DIR}}/bin/kubectl
-      - chmod 755 {{ .ROOT_DIR }}/bin/kubectl
-    status:
-      - test -f {{.ROOT_DIR}}/bin/kubectl
+      - poetry install
+      - pipenv run ansible --version
+      - pipenv run ansible-galaxy install -r requirements.yml --force
   bootstap_beast:
     dir: "{{.TASKFILE_DIR}}/ansible"
     cmds:
