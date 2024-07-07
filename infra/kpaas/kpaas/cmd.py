@@ -20,14 +20,20 @@ def apply(path: Path = Path(".")):
 def diff(path: Path = Path(".")):
     logger.info("Running diff path: %s", path)
     app_config = load_path(path)
-    app_config.config.diff()
 
 
 @app.command()
 def metadata(path: Path = Path(".")):
     logger.info("Running metadata path: %s", path)
-    config = load_path(path)
+    app_config = load_path(path)
     print(config.to_json())
+
+
+@app.command()
+def build(path: Path = Path(".")):
+    logger.info("Running build path: %s", path)
+    app_config = load_path(path)
+    app_config.config.build()
 
 
 if __name__ == "__main__":

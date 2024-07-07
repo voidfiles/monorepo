@@ -16,38 +16,9 @@ from .values import process_values
 logger = logging.getLogger(__name__)
 
 
-async def get_current_chart(
-    client: Client, helm: "models.Helm"
-) -> ChartMetadata | None:
-    try:
-        revision = await client.get_current_revision(
-            helm.release.name,
-            namespace=helm.release.namespace,
-        )
-
-        chart_metadata = await revision.chart_metadata()
-    except (ReleaseNotFoundError, ChartNotFoundError):
-        return None
-
-    return chart_metadata
-
-
-async def get_chart_from_repo(client: Client, helm: "models.Helm"):
-    try:
-        await client.get_chart(
-            helm.release.chart,
-            repo=helm.repository.url,
-            version=helm.release.version,
-        )
-    except ChartNotFoundError:
-        print("Failed to find chart not found")
-        return None
-
-
-async def deploy_chart(
+async def delete_chart(
     client: Client, helm: "models.Helm", dry_run: bool = False
 ) -> ReleaseRevision | None:
-    await get_chart_from_repo(client, helm)
     command = [
         "helm",
         "upgrade",

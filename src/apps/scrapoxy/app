@@ -1,0 +1,4 @@
+APP_NAME=scrapoxy
+APP_KIND=from_image
+APP_VOLUME=true
+FROM_IMAGE=fabienvauchelles/scrapoxy

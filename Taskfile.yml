@@ -13,3 +13,11 @@ tasks:
     cmds:
       - echo 'Hello World from Task!'
     silent: true
+  build:
+    vars:
+      DIRS:
+        sh: |
+          git diff --name-only HEAD~1 | awk -F "/*[^/]*/*$" '{ print ($1 == "" ? "." : $1); }' | sort | uniq | grep src/apps
+    cmds:
+      - for: { var: DIRS }
+        cmd: pushd {{ .ITEM }} && task build

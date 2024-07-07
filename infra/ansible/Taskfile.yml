@@ -7,11 +7,15 @@ tasks:
       - pipenv run ansible --version
       - pipenv run ansible-galaxy install -r requirements.yml --force
   bootstap_beast:
-    dir: "{{.TASKFILE_DIR}}/ansible"
+    dir: "{{.TASKFILE_DIR}}"
     cmds:
       - poetry run ansible-playbook -i inventory/hetzner --user root playbooks/bootstrap_anisible.yml
-  provision_beast:
-    dir: "{{.TASKFILE_DIR}}/ansible"
+  dokku:
+    dir: "{{.TASKFILE_DIR}}"
+    cmds:
+      - poetry run ansible-playbook -i inventory/beast playbooks/dokku.yml
+  k3s:
+    dir: "{{.TASKFILE_DIR}}"
     cmds:
       - poetry run run ansible-playbook -i inventory/beast playbooks/k3s.yml
   fetch_k8s_auth:

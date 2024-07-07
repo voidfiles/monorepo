@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+
 from dataclass_wizard import JSONWizard
 
 
@@ -14,3 +15,6 @@ class App(JSONWizard):
 
     def apply(self):
         return "nope"
+
+    def build(self):
+        return "none"

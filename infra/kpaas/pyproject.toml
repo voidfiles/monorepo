@@ -57,3 +57,7 @@ kpaas = "kpaas.cmd:app"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[virtualenvs]
+create = true
+in-project = true

@@ -1,0 +1,49 @@
+version: '3'
+
+vars:
+  HOST_STORAGE_ROOT: /var/lib/dokku/data/storage/
+tasks:
+  dir: "{{ .USER_WORKING_DIR }}"
+  dokku:
+    cmds:
+      - ssh -t dokku@brntgarlic dokku {{.CLI_ARGS}}
+  init:
+    cmds:
+      - task app:dokku -- apps:exists {{ .APP_NAME }} || task app:dokku -- apps:create {{ .APP_NAME }}
+      - task: push_env
+      - task app:dokku -- letsencrypt:set {{ .APP_NAME }} email voidfiles@gmail.com
+      - task app:dokku -- letsencrypt:active {{ .APP_NAME }} || task app:dokku -- letsencrypt:enable {{ .APP_NAME }} 
+      - |
+        {{ if .APP_VOLUME }}
+          task app:dokku -- storage:ensure-directory {{ .APP_NAME }}
+          task app:dokku -- storage:list scrapoxy | grep "/var/lib/dokku/data/storage/scrapoxy" || \
+            task app:dokku -- storage:mount {{ .APP_NAME }} {{.HOST_STORAGE_ROOT}}{{ .APP_NAME }}:/etc/scrapoxy
+        {{ end }}
+      - task: init_{{.APP_KIND}}
+  init_from_image:
+    cmds:
+      - task: deploy_from_image
+      - 
+  deploy:
+    cmds:
+      - task: deploy_{{.APP_KIND}}
+  deploy_from_image:
+    cmds:
+      - task app:dokku -- ps:report scrapoxy --deployed || task app:dokku -- git:from-image {{ .APP_NAME }} {{ .FROM_IMAGE }}:latest
+  push_env:
+    vars:
+      ENV_VARS:
+        sh: cat env
+      PARSED_VARS: '{{ splitList "\n" .ENV_VARS | join " " }}'
+    cmds:
+      - task app:dokku -- config:set {{ .APP_NAME }} {{.PARSED_VARS}}
+  debug:
+    cmds:
+      - echo "{{ .USER_WORKING_DIR }}/env"
+      - env
+  logs:
+    cmds:
+      - task app:dokku -- logs {{.APP_NAME}}
+  ports:
+    cmds:
+      - task app:dokku -- ports:list {{.APP_NAME}}

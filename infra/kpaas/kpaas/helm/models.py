@@ -122,3 +122,6 @@ class Helm(JSONWizard):
         loop = asyncio.get_event_loop()
 
         loop.run_until_complete(diff(self))
+
+    def build(self):
+        logger.info("Build not supported for helm releases")

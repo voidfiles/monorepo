@@ -24,3 +24,7 @@ tasks:
       KUBECONFIG: "{{ .TASKFILE_DIR }}/../infra/.kubeconfig"
     cmds:
       - poetry run kpaas diff --path={{ .USER_WORKING_DIR }}
+  build:
+    dir: "{{ .TASKFILE_DIR }}/../infra/kpaas/"
+    cmds:
+      - poetry run kpaas build --path={{ .USER_WORKING_DIR }}
