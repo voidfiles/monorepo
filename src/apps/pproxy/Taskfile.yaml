@@ -1,0 +1,17 @@
+version: '3'
+
+dotenv: ['env', 'app']
+
+includes:
+  app: ../Taskfile.yaml
+
+tasks:
+  run:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - poetry run fastapi dev pproxy/main.py
+  load:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - k6 run extra/script.js
+

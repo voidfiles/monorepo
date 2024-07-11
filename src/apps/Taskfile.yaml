@@ -2,6 +2,8 @@ version: '3'
 
 vars:
   HOST_STORAGE_ROOT: /var/lib/dokku/data/storage/
+  APP_NAME: "{{.APP_NAME}}"
+  APP_KIND: "{{if .APP_KIND}}{{.APP_KIND}}{{else}}git{{end}}"
 tasks:
   dir: "{{ .USER_WORKING_DIR }}"
   dokku:
@@ -19,17 +21,35 @@ tasks:
           task app:dokku -- storage:list scrapoxy | grep "/var/lib/dokku/data/storage/scrapoxy" || \
             task app:dokku -- storage:mount {{ .APP_NAME }} {{.HOST_STORAGE_ROOT}}{{ .APP_NAME }}:/etc/scrapoxy
         {{ end }}
-      - task: init_{{.APP_KIND}}
-  init_from_image:
-    cmds:
-      - task: deploy_from_image
-      - 
+      - task: build_{{.APP_KIND}}
+      - task: deploy_{{.APP_KIND}}
   deploy:
     cmds:
       - task: deploy_{{.APP_KIND}}
   deploy_from_image:
     cmds:
-      - task app:dokku -- ps:report scrapoxy --deployed || task app:dokku -- git:from-image {{ .APP_NAME }} {{ .FROM_IMAGE }}:latest
+      - task app:dokku -- ps:report {{ .APP_NAME }} --deployed || task app:dokku -- git:from-image {{ .APP_NAME }} {{ .FROM_IMAGE }}:latest
+  deploy_git:
+    vars:
+      VERSION:
+        sh: docker images --no-trunc --quiet ghcr.io/voidfiles/{{ .APP_NAME }}:latest
+    cmds:
+      - |
+        docker image save ghcr.io/voidfiles/{{ .APP_NAME }}:latest | \
+          pv | \
+          ssh -t dokku@brntgarlic dokku git:load-image {{ .APP_NAME }} ghcr.io/voidfiles/{{ .APP_NAME }}@{{ .VERSION }}
+  build:
+    cmds:
+      - task: build_{{.APP_KIND}}
+  build_from_image:
+    cmds:
+      - echo "Not required"
+  build_git:
+      - |
+        pack build ghcr.io/voidfiles/{{ .APP_NAME }}:latest \
+          --builder paketobuildpacks/builder-jammy-base \
+          --cache-image ghcr.io/voidfiles/{{ .APP_NAME }}-cache:latest \
+          --publish
   push_env:
     vars:
       ENV_VARS:
@@ -39,8 +59,9 @@ tasks:
       - task app:dokku -- config:set {{ .APP_NAME }} {{.PARSED_VARS}}
   debug:
     cmds:
-      - echo "{{ .USER_WORKING_DIR }}/env"
       - env
+      - echo "{{spew .APP_NAME}}"
+      - echo "{{spew .APP_KIND}}"
   logs:
     cmds:
       - task app:dokku -- logs {{.APP_NAME}}

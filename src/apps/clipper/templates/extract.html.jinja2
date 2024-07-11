@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+</head>
+
+<body>
+    <main class="container">
+        <h1>{{ resource.metadata.title }}</h1>
+        <h2>Metadata</h2>
+        <ul>
+            {% for key, val in resource.metadata.items() %}
+            <li><em>{{key}}</em>: {{val}}</li>
+            {% endfor %}
+        </ul>
+
+        <div style="max-width: 100%; overflow-x: auto; white-space: nowrap;">
+            <div style="display: inline-block; width: 600px;  margin-right: 20px;vertical-align: top;">
+                <div style="white-space: wrap;">
+                    {{resource.html | safe}}
+                </div>
+            </div>
+            <div style="display: inline-block; width: 600px;  margin-right: 20px;vertical-align: top;">
+                <div style="white-space: wrap;">
+                    {{resource.render_markdown() | safe}}
+                </div>
+            </div>
+            <div style="display: inline-block; width: 600px;  margin-right: 20px;vertical-align: top;">
+                <div style="white-space: wrap;">
+                    <pre>
+                     {{ resource.text }}
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>

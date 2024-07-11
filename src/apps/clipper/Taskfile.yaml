@@ -1,0 +1,12 @@
+version: '3'
+
+dotenv: ['env', 'app']
+
+includes:
+  app: ../Taskfile.yaml
+
+tasks:
+  run:
+    cmds:
+      - poetry run fastapi dev clipper/main.py
+      
