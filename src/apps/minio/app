@@ -1,0 +1,4 @@
+APP_NAME=minio
+APP_VOLUME=/data
+APP_KIND=from_image
+APP_RUNTIME=docker

@@ -1,13 +1,13 @@
+import asyncio
+import json
+from itertools import chain, islice
 from random import choice, shuffle
 
-from .providers import providers, PotentialProxy
-import httpx
-from itertools import chain, islice
-from typing import Iterator
-import json
-import asyncio
 import diskcache as dc
+import httpx
 import structlog
+
+from .providers import PotentialProxy, providers
 
 logger = structlog.stdlib.get_logger(name=__name__)
 
@@ -37,7 +37,7 @@ class ProxyPool:
     def __init__(
         self,
         countries: list = [],
-        max_proxies: int = 10,
+        max_proxies: int = 30,
         use_cache: bool = True,
     ):
         """
@@ -129,12 +129,8 @@ class ProxyPool:
 
         return [
             {
-                "http://": httpx.AsyncHTTPTransport(
-                    proxy=group[0]
-                ),
-                "https://": httpx.AsyncHTTPTransport(
-                    proxy=group[1]
-                ),
+                "http://": httpx.AsyncHTTPTransport(proxy=group[0]),
+                "https://": httpx.AsyncHTTPTransport(proxy=group[1]),
             }
             for group in zip(http_proxies, https_proxies)
         ]

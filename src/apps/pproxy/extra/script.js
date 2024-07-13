@@ -1,10 +1,10 @@
 import { URL } from 'https://jslib.k6.io/url/1.0.0/index.js';
-import http from 'k6/http';
 import { check, sleep } from 'k6';
-
+import http from 'k6/http';
+const host = __ENV.MY_HOSTNAME || "http://127.0.0.1:8000";
 export const options = {
   // A number specifying the number of VUs to run concurrently.
-  vus: 10,
+  vus: 20,
   // A string specifying the total duration of the test run.
   duration: '30s',
 
@@ -55,7 +55,7 @@ export const options = {
 // about authoring k6 scripts.
 //
 export default function() {
-  const url = new URL('http://127.0.0.1:8000/proxy');
+  const url = new URL(`${host}/proxy`);
   url.searchParams.append('url', 'https://httpbin.org/get');
   const res = http.get(url.toString());
   check(res, { 'status was 200': (r) => r.status == 200 });

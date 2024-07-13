@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from async_timeout import timeout as atimeout
 import structlog
 
-timeout = httpx.Timeout(1.9)
+timeout = httpx.Timeout(4.9)
 
 logger = structlog.stdlib.get_logger(name=__name__)
 
@@ -21,8 +21,8 @@ class PotentialProxy:
             proxy_url = self.uri
             logger.info("check proxy", proxy_url=proxy_url, check_url=check_url)
             try:
-                async with atimeout(2):
-                    resp = await httpx.AsyncClient(proxy=proxy_url).get(
+                async with atimeout(5):
+                    resp = await httpx.AsyncClient(proxy=proxy_url, verify=False).get(
                         check_url, timeout=timeout
                     )
 

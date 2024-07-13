@@ -1,4 +1,0 @@
-project = "monorepo"
-k3s_version = "v1.28.1+k3s1"
-kube_version = "v1.28.3"
-helm_version = "v3.13.1"

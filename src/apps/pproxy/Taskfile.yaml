@@ -10,8 +10,21 @@ tasks:
     dir: "{{ .TASKFILE_DIR }}"
     cmds:
       - poetry run fastapi dev pproxy/main.py
+  run_prod:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - poetry run fastapi run pproxy/main.py
+  prime:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - poetry run python -m pproxy.prime
   load:
     dir: "{{ .TASKFILE_DIR }}"
     cmds:
       - k6 run extra/script.js
-
+  load_prod:
+    dir: "{{ .TASKFILE_DIR }}"
+    env:
+      MY_HOSTNAME: https://pproxy.brntgarlic.com
+    cmds:
+      - k6 run extra/script.js

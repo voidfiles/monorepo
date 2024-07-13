@@ -14,6 +14,20 @@ tzlocal = "*"
 test = ["coverage"]
 
 [[package]]
+name = "aiojobs"
+version = "1.2.1"
+description = "Job scheduler for managing background tasks (asyncio)"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+async-timeout = {version = ">=4.0.0", markers = "python_version < \"3.11\""}
+
+[package.extras]
+aiohttp = ["aiohttp (>=3.9.0)"]
+
+[[package]]
 name = "annotated-types"
 version = "0.7.0"
 description = "Reusable constraint types to use with typing.Annotated"
@@ -593,12 +607,16 @@ python-versions = ">=3.8"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "e40762b94803e622709487c46db92c440e229dd33aa00e8fee68eb5cd8f52ff9"
+content-hash = "ad9e9a51bb78aebeff945edfd9ed29a321065b467a6faf12b2c4c25e421003db"
 
 [metadata.files]
 aiocron = [
     {file = "aiocron-1.8-py3-none-any.whl", hash = "sha256:b6313214c311b62aa2220e872b94139b648631b3103d062ef29e5d3230ddce6d"},
     {file = "aiocron-1.8.tar.gz", hash = "sha256:48546513faf2eb7901e65a64eba7b653c80106ed00ed9ca3419c3d10b6555a01"},
+]
+aiojobs = [
+    {file = "aiojobs-1.2.1-py3-none-any.whl", hash = "sha256:88efd8e56295eff69efcc44488e41c38159bcbda2ac7c6884e4140674dace54f"},
+    {file = "aiojobs-1.2.1.tar.gz", hash = "sha256:59d6e7ad7829e9d0f73bfceeae28153b541be6b0959a08cc5ceb222717c888ff"},
 ]
 annotated-types = [
     {file = "annotated_types-0.7.0-py3-none-any.whl", hash = "sha256:1f02e8b43a8fbbc3f3e0d4f0f4bfc8131bcb4eebe8849b8e5c773f3a1c582a53"},

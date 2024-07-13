@@ -1,0 +1,9 @@
+#! /bin/bash
+
+APP_NAME="${APP_NAME:-}"
+
+FIRST=$1
+THE_REST=( "${@:2}" )
+
+echo "dokku $FIRST ${APP_NAME} ${THE_REST[*]}"
+ssh -o LogLevel=QUIET -t dokku@brntgarlic dokku "${FIRST}" "${APP_NAME}" ${THE_REST[*]}

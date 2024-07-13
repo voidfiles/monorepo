@@ -1,12 +1,12 @@
+import json
 import os
 from dataclasses import dataclass
-import aiocron
 from random import choice
+
+import aiocron
 import httpx
-from fastapi import FastAPI
-from .proxy_pool import ProxyPool
 import structlog
-import json
+from fastapi import FastAPI, HTTPException
 from tenacity import (
     retry,
     retry_if_exception_type,
@@ -14,6 +14,8 @@ from tenacity import (
     wait_exponential,
 )
 from user_agents import get_user_agent
+
+from .proxy_pool import ProxyPool
 
 logger = structlog.get_logger(name=__name__)
 
@@ -28,9 +30,7 @@ app = FastAPI()
 logger.info("building proxy pool")
 proxy_pool = ProxyPool()
 
-HTTP_CLIENTS = {
-    "clients": {}
-}
+HTTP_CLIENTS = {"clients": {}}
 
 
 def build_http_clients(n: int):
@@ -40,14 +40,15 @@ def build_http_clients(n: int):
         proxy = proxies[i]
         yield httpx.AsyncClient(
             mounts=proxy,
-            headers={
-                "User-Agent": get_user_agent()
-            },
+            headers={"User-Agent": get_user_agent()},
+            verify=False,
         )
 
 
 def update_client_pool():
-    HTTP_CLIENTS["clients"] = {i: b for [i, b] in enumerate([x for x in build_http_clients(10)])}
+    HTTP_CLIENTS["clients"] = {
+        i: b for [i, b] in enumerate([x for x in build_http_clients(10)])
+    }
 
 
 update_client_pool()
@@ -71,6 +72,7 @@ HttpxError = (
 class ProxyResponse:
     body: str
     response: httpx.Response
+
 
 @retry(
     wait=wait_exponential(multiplier=1, min=4, max=10),
@@ -96,7 +98,9 @@ async def get_response(url: str) -> ProxyResponse:
             async for chunk in response.aiter_text():
                 resp += chunk
     except httpx.ProxyError as e:
-        logger.error("Failed because of a proxy issue, removing proxy from list", error=e)
+        logger.error(
+            "Failed because of a proxy issue, removing proxy from list", error=e
+        )
         del HTTP_CLIENTS["clients"][key]
         raise
 
@@ -105,7 +109,11 @@ async def get_response(url: str) -> ProxyResponse:
 
 @app.get("/proxy")
 async def proxy_request(url: str):
-    resp = await get_response(url)
+    try:
+        resp = await get_response(url)
+    except Exception as e:
+        logger.error("failed to proxy url", url=url, error=e)
+        raise HTTPException(status_code=504, detail="Upstream failure")
 
     body = resp.body
     if resp.response.headers.get("content-type") == "application/json":
@@ -113,11 +121,16 @@ async def proxy_request(url: str):
 
     return {
         "body": body,
-        "headers": {item[0]: item[1] for item in resp.response.headers.items()}
+        "headers": {item[0]: item[1] for item in resp.response.headers.items()},
     }
 
 
-@aiocron.crontab('*/10 * * * *')
-async def attime():
-    await proxy_pool.update()
-    update_client_pool()
+@app.on_event("startup")
+async def startup():
+    logger.info("Starting up")
+
+    @aiocron.crontab("*/20 * * * *")
+    async def attime():
+        logger.info("Updating proxy pool")
+        await proxy_pool.update()
+        update_client_pool()
