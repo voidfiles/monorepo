@@ -1,0 +1,1 @@
+web: fastapi run pproxy/main.py --port=$PORT

@@ -4,6 +4,7 @@ vars:
   HOST_STORAGE_ROOT: /var/lib/dokku/data/storage/
   APP_NAME: "{{.APP_NAME}}"
   APP_KIND: "{{if .APP_KIND}}{{.APP_KIND}}{{else}}git{{end}}"
+  APP_RUNTIME: "{{if .APP_RUNTIME}}{{.APP_RUNTIME}}{{else}}python{{end}}"
 tasks:
   dir: "{{ .USER_WORKING_DIR }}"
   dokku:
@@ -11,45 +12,50 @@ tasks:
       - ssh -t dokku@brntgarlic dokku {{.CLI_ARGS}}
   init:
     cmds:
-      - task app:dokku -- apps:exists {{ .APP_NAME }} || task app:dokku -- apps:create {{ .APP_NAME }}
+      - task -x app:dokku -- apps:exists {{ .APP_NAME }} || task app:dokku -- apps:create {{ .APP_NAME }}
       - task: push_env
-      - task app:dokku -- letsencrypt:set {{ .APP_NAME }} email voidfiles@gmail.com
-      - task app:dokku -- letsencrypt:active {{ .APP_NAME }} || task app:dokku -- letsencrypt:enable {{ .APP_NAME }} 
+      - task -x app:dokku -- letsencrypt:set {{ .APP_NAME }} email voidfiles@gmail.com
+      - task -x app:dokku -- letsencrypt:active {{ .APP_NAME }} || task app:dokku -- letsencrypt:enable {{ .APP_NAME }} 
       - |
         {{ if .APP_VOLUME }}
           task app:dokku -- storage:ensure-directory {{ .APP_NAME }}
-          task app:dokku -- storage:list scrapoxy | grep "/var/lib/dokku/data/storage/scrapoxy" || \
+          task -x app:dokku -- storage:list scrapoxy | grep "/var/lib/dokku/data/storage/scrapoxy" || \
             task app:dokku -- storage:mount {{ .APP_NAME }} {{.HOST_STORAGE_ROOT}}{{ .APP_NAME }}:/etc/scrapoxy
         {{ end }}
-      - task: build_{{.APP_KIND}}
-      - task: deploy_{{.APP_KIND}}
+      - task: build
+      - task: deploy
   deploy:
+    vars:
+      IMAGE: "{{if .FROM_IMAGE}}{{.FROM_IMAGE}}{{else}}ghcr.io/voidfiles/{{ .APP_NAME }}:latest{{end}}"
     cmds:
+      - ssh -t dokku@brntgarlic docker pull {{ .IMAGE }}
       - task: deploy_{{.APP_KIND}}
   deploy_from_image:
     cmds:
       - task app:dokku -- ps:report {{ .APP_NAME }} --deployed || task app:dokku -- git:from-image {{ .APP_NAME }} {{ .FROM_IMAGE }}:latest
   deploy_git:
-    vars:
-      VERSION:
-        sh: docker images --no-trunc --quiet ghcr.io/voidfiles/{{ .APP_NAME }}:latest
     cmds:
-      - |
-        docker image save ghcr.io/voidfiles/{{ .APP_NAME }}:latest | \
-          pv | \
-          ssh -t dokku@brntgarlic dokku git:load-image {{ .APP_NAME }} ghcr.io/voidfiles/{{ .APP_NAME }}@{{ .VERSION }}
+      - task app:dokku -- git:from-image {{ .APP_NAME }} ghcr.io/voidfiles/{{ .APP_NAME }}:latest
   build:
     cmds:
-      - task: build_{{.APP_KIND}}
-  build_from_image:
+      - task: build_{{.APP_KIND}}_{{.APP_RUNTIME}}
+  build_from_image_docker:
     cmds:
       - echo "Not required"
-  build_git:
+  build_git_python:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
       - |
-        pack build ghcr.io/voidfiles/{{ .APP_NAME }}:latest \
-          --builder paketobuildpacks/builder-jammy-base \
-          --cache-image ghcr.io/voidfiles/{{ .APP_NAME }}-cache:latest \
-          --publish
+        docker build --file=../build/Dockerfile.{{.APP_RUNTIME}} \
+          --platform linux/amd64 \
+          -t ghcr.io/voidfiles/{{ .APP_NAME }}:latest {{ .APP_NAME }} 
+      - docker push ghcr.io/voidfiles/{{ .APP_NAME }}:latest
+  build_local:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - |
+        docker build --file=../build/Dockerfile.{{.APP_RUNTIME}} \
+          -t ghcr.io/voidfiles/{{ .APP_NAME }}:latest {{ .APP_NAME }}
   push_env:
     vars:
       ENV_VARS:

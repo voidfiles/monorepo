@@ -38,6 +38,7 @@ class ProxyPool:
         self,
         countries: list = [],
         max_proxies: int = 10,
+        use_cache: bool = True,
     ):
         """
         The one class for everything.
@@ -65,8 +66,14 @@ class ProxyPool:
         self.countries = [i.upper() for i in countries]
         self.max_proxies = max_proxies
         self.protocols = ["http", "https"]
-        self.cache = dc.Cache("tmp")
-        self.proxy_for_raw = self.cache.get("proxy_pool", None)
+        self.use_cache = use_cache
+        if self.use_cache:
+            self.cache = dc.Cache("tmp")
+            self.proxy_for_raw = self.cache.get("proxy_pool", None)
+        else:
+            self.cache = None
+            self.proxy_for_raw = None
+
         if self.proxy_for_raw:
             self.proxy_for: dict[str, list[str]] = json.loads(self.proxy_for_raw)
         else:
@@ -100,7 +107,8 @@ class ProxyPool:
             if all([x >= self.max_proxies for x in proxy_counts.values()]):
                 break
 
-        self.cache["proxy_pool"] = json.dumps(self.proxy_for)
+        if self.use_cache:
+            self.cache["proxy_pool"] = json.dumps(self.proxy_for)
 
     def proxy(self):
         """
