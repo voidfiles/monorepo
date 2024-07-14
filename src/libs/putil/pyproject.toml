@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "putil"
+version = "0.1.0"
+description = ""
+authors = ["voidfiles <voidfiles@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+url-normalize = "^1.4.3"
+w3lib = "^2.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

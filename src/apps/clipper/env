@@ -1,1 +1,3 @@
 A=B
+CACHE_PATH=/app/data
+PPROXY_HOST=https://pproxy.brntgarlic.com/proxy

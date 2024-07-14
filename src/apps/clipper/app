@@ -1,1 +1,3 @@
 APP_NAME=clipper
+APP_RUNTIME=python
+APP_VOLUME=/app/data

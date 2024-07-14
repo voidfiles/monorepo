@@ -1,0 +1,5 @@
+version: '3'
+tasks:
+  deploy_cfproxy:
+    cmds:
+      - npx wrangler

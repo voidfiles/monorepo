@@ -8,5 +8,5 @@ includes:
 tasks:
   run:
     cmds:
-      - poetry run fastapi dev clipper/main.py
+      - poetry run fastapi dev clipper/main.py --port=8001
       

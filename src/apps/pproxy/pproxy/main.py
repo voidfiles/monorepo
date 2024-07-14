@@ -42,6 +42,7 @@ def build_http_clients(n: int):
             mounts=proxy,
             headers={"User-Agent": get_user_agent()},
             verify=False,
+            timeout=15,
         )
 
 
@@ -121,6 +122,8 @@ async def proxy_request(url: str):
 
     return {
         "body": body,
+        "start_url": url,
+        "final_url": str(resp.response.url),
         "headers": {item[0]: item[1] for item in resp.response.headers.items()},
     }
 

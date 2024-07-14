@@ -60,7 +60,7 @@ tasks:
     dir: "{{ .TASKFILE_DIR }}"
     cmds:
       - |
-        docker build --file=../build/Dockerfile.{{.APP_RUNTIME}} \
+        docker buildx build --file=../build/Dockerfile.{{.APP_RUNTIME}} \
           --platform linux/amd64 \
           -t ghcr.io/voidfiles/{{ .APP_NAME }}:latest {{ .APP_NAME }} 
       - docker push ghcr.io/voidfiles/{{ .APP_NAME }}:latest

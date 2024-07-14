@@ -1,0 +1,1 @@
+web: fastapi run clipper/main.py --port=$PORT
