@@ -28,3 +28,7 @@ tasks:
       MY_HOSTNAME: https://pproxy.brntgarlic.com
     cmds:
       - k6 run extra/script.js
+  test:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - poetry run pytest

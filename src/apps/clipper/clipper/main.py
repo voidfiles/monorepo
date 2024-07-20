@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from .resource import get_resource
+from .resource import get_resource, StopRequest
 
 app = FastAPI()
 
@@ -11,7 +11,10 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/url/html", response_class=HTMLResponse)
 async def read_html(request: Request, url: str):
-    resource = await get_resource(url)
+    try:
+        resource = await get_resource(url)
+    except StopRequest:
+        raise HTTPException(status_code=403, detail="stop requesting URL")
 
     return templates.TemplateResponse(
         request=request,
@@ -22,12 +25,10 @@ async def read_html(request: Request, url: str):
 
 @app.get("/url/json")
 async def read_json(url: str):
-    resource = await get_resource(url)
-
-    print("metadata %s" % (resource.metadata))
-    print("outbound_links %s" % (resource.outbound_links))
-    print("url %s" % (resource.url))
-    print("final_url %s" % (resource.final_url))
+    try:
+        resource = await get_resource(url)
+    except StopRequest:
+        raise HTTPException(status_code=403, detail="stop requesting URL")
 
     return {
         "resource": {

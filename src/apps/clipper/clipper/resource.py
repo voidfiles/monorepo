@@ -12,12 +12,14 @@ from tenacity import (
     stop_after_attempt,
     wait_exponential,
 )
-
+import logging
 from .metadata import extract_metadata
 from .models import Metadata
 from .putil import canonical_url
 from .readability import Document as ReadabilityDocument
 from .santize import process
+
+logger = logging.getLogger(__name__)
 
 markdowner = Markdown()
 
@@ -65,6 +67,10 @@ HttpxError = (
 PPROXY_HOST = os.environ.get("PPROXY_HOST", "http://127.0.0.1:8000/proxy")
 
 
+class StopRequest(Exception):
+    pass
+
+
 @retry(
     wait=wait_exponential(multiplier=1, min=4, max=10),
     stop=stop_after_attempt(3),
@@ -77,7 +83,14 @@ async def get_body_text(url: str) -> tuple[str, str]:
     async with client.stream(
         "GET", PPROXY_HOST, params={"url": url}, follow_redirects=True
     ) as response:
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code == 403:
+                raise StopRequest()
+
+            raise
+
         if int(response.headers.get("Content-Length", 0)) > MAX_BODY:
             raise ResponseToBig
 
@@ -137,7 +150,13 @@ async def get_resource(url: str) -> Resource:
     links = [canonical_url(x) for x in doc.links()]
     links = list(filter(filter_image_urls, links))
     metadata = doc.metadata().data
-    html = doc.summary()
-    html = process(html)
+    html = ""
+    try:
+        html = doc.summary()
+        html = process(html)
+    except Exception:
+        logger.info("Failed to parse html for %s" % (final_url))
+        pass
+
     text = md(html).strip()
     return Resource(url, final_url, metadata, text, html, links)
