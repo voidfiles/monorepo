@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "seeds"
+version = "0.1.0"
+description = ""
+authors = ["voidfiles <voidfiles@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.111.0"
+structlog = "^24.2.0"
+tenacity = "^8.5.0"
+feedparser = "^6.0.11"
+celery = {extras = ["pytest"], version = "^5.4.0"}
+minio = "^7.2.7"
+url-normalize = "^1.4.3"
+w3lib = "^2.2.1"
+lxml = "^5.2.2"
+cssselect = "^1.2.0"
+hishel = "^0.0.30"
+diskcache = "^5.6.3"
+redis = "^5.0.7"
+pytest = "^8.2.2"
+pytest-asyncio = "^0.23.7"
+pytest-httpx = "^0.30.0"
+asgiref = "^3.8.1"
+jinja2 = "^3.1.4"
+validators = "^0.33.0"
+cloudflare = "^3.1.0"
+boto3 = "^1.34.145"
+botocore = "^1.34.145"
+dataclasses-json = "^0.6.7"
+python-ulid = {extras = ["pydantic"], version = "^2.7.0"}
+alembic = "^1.13.2"
+pytz = "^2024.1"
+asyncpg = "^0.29.0"
+greenlet = "^3.0.3"
+bpython = "^0.24"
+tortoise-orm = {extras = ["asyncpg"], version = "^0.21.5"}
+pytest-celery = "^1.0.1"
+respx = "^0.21.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

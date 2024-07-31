@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Info</title>
+    </head>
+    <body>
+        <h1>Hello</h1>
+        <ul>
+        {% for url in urls %}
+            <li>
+                <details>
+                    <summary>
+                        {{url[1] | length }} {{ url[0] }}
+                        <span class="icon">👇</span>
+                    </summary>
+                    <ul>
+                        {% for url in url[1] %}
+                           <li>{{ url.url }}</li>
+                        {% endfor %}
+                    </ul>
+                  </details>
+                
+
+            </li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>

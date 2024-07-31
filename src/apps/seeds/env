@@ -1,0 +1,3 @@
+ENV=production
+DATABASE_URL=postgresql+asyncpg://postgres:d18bcf0c0263369596c379157341f3fe@100.98.28.92:2030/seeds
+TEST_DATABASE_URL=postgresql+asyncpg://postgres:d18bcf0c0263369596c379157341f3fe@100.98.28.92:2030/seeds_test

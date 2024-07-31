@@ -37,6 +37,7 @@ async def read_json(url: str):
             "metadata": resource.metadata,
             "links": resource.outbound_links,
             "url": resource.url,
+            "headers": resource.headers,
             "final_url": resource.final_url,
         }
     }

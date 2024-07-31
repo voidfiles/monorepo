@@ -76,7 +76,7 @@ class StopRequest(Exception):
     stop=stop_after_attempt(3),
     retry=retry_if_exception_type(HttpxError),
 )
-async def get_body_text(url: str) -> tuple[str, str]:
+async def get_body_text(url: str) -> tuple[str, str, dict[str, any]]:
 
     final_url = ""
     resp = b""
@@ -103,9 +103,10 @@ async def get_body_text(url: str) -> tuple[str, str]:
         data = json.loads(byes)
 
         resp = data.get("body")
+        headers = data.get("headers")
         final_url = data.get("final_url")
 
-    return resp, final_url
+    return resp, final_url, headers
 
 
 class Document(ReadabilityDocument):
@@ -137,13 +138,14 @@ class Resource(object):
     text: str
     html: str
     outbound_links: list[str]
+    headers: dict[str, any]
 
     def render_markdown(self) -> str:
         return markdowner.convert(self.text)
 
 
 async def get_resource(url: str) -> Resource:
-    body, final_url = await get_body_text(url)
+    body, final_url, headers = await get_body_text(url)
     final_url = canonical_url(final_url)
     # body = process(body)
     doc = Document(body, url=url)
@@ -159,4 +161,4 @@ async def get_resource(url: str) -> Resource:
         pass
 
     text = md(html).strip()
-    return Resource(url, final_url, metadata, text, html, links)
+    return Resource(url, final_url, metadata, text, html, links, headers)

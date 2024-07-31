@@ -1,0 +1,38 @@
+version: '3'
+
+dotenv: ['env', 'app']
+
+includes:
+  app: ../Taskfile.yaml
+
+tasks:
+  hi:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - echo "hello"
+  run:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - poetry run fastapi dev seeds/views/main.py
+  test:
+    dir: "{{ .TASKFILE_DIR }}"
+    env:
+      TASKS_ALWAYS_EAGER: 1
+    cmds:
+      - poetry run pytest
+  create_migration:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - poetry run alembic revision --autogenerate -m {{ .CLI_ARGS }}
+  run_migrations:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - poetry run alembic upgrade head
+  celery:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - poetry run celery -A seeds.tasks.main worker -E --loglevel=INFO
+  shell:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+    - poetry run bpython
